@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Unidades | Navaja Suiza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    <div class="container">
+        <header>
+            <div class="icon-container">
+                <i class="ph ph-arrows-left-right"></i>
+            </div>
+            <h1>Conversor</h1>
+            <p>Precisión instantánea</p>
+        </header>
+
+        <nav class="category-tabs">
+            <button class="tab-btn active" data-category="length">
+                <i class="ph ph-ruler"></i> Longitud
+            </button>
+            <button class="tab-btn" data-category="weight">
+                <i class="ph ph-scales"></i> Peso
+            </button>
+            <button class="tab-btn" data-category="temperature">
+                <i class="ph ph-thermometer"></i> Temp
+            </button>
+        </nav>
+
+        <div class="converter-wrapper">
+            <!-- Grupo Input 1 -->
+            <div class="input-group">
+                <div class="input-header">
+                    <label>De</label>
+                </div>
+                <div class="input-row">
+                    <input type="number" id="input1" placeholder="0" value="1">
+                    <div class="custom-select">
+                        <select id="unit1">
+                            <!-- Las opciones se generarán por JS -->
+                        </select>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de intercambio -->
+            <div class="swap-container">
+                <button id="swap-btn" class="swap-btn" title="Intercambiar unidades">
+                    <i class="ph ph-arrows-down-up"></i>
+                </button>
+            </div>
+
+            <!-- Grupo Input 2 -->
+            <div class="input-group">
+                <div class="input-header">
+                    <label>A</label>
+                </div>
+                <div class="input-row">
+                    <input type="number" id="input2" placeholder="0">
+                    <div class="custom-select">
+                        <select id="unit2">
+                            <!-- Las opciones se generarán por JS -->
+                        </select>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
