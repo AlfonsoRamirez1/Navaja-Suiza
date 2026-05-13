@@ -3,18 +3,18 @@
     --bg-dark: #0f172a;
     --bg-card: #1e293b;
     --bg-card-hover: #334155;
-    
+
     --primary-color: #3b82f6;
     --primary-glow: rgba(59, 130, 246, 0.5);
     --secondary-color: #8b5cf6;
     --secondary-glow: rgba(139, 92, 246, 0.4);
-    
+
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
-    
+
     --border-color: #334155;
     --border-focus: #475569;
-    
+
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --radius-lg: 24px;
     --radius-md: 16px;
@@ -57,9 +57,20 @@ body {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
-    50% { transform: scale(1.1) translate(50px, 50px); opacity: 0.8; }
-    100% { transform: scale(0.9) translate(-50px, -20px); opacity: 0.5; }
+    0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.1) translate(50px, 50px);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(0.9) translate(-50px, -20px);
+        opacity: 0.5;
+    }
 }
 
 .container {
@@ -69,8 +80,8 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 40px;
     border-radius: var(--radius-lg);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
-                0 0 0 1px rgba(255,255,255,0.02) inset;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.02) inset;
     width: 100%;
     max-width: 480px;
     position: relative;
@@ -210,11 +221,12 @@ input[type="number"]::placeholder {
 }
 
 /* Hide number arrows */
-input[type="number"]::-webkit-inner-spin-button, 
-input[type="number"]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
+
 input[type="number"] {
     -moz-appearance: textfield;
 }
@@ -271,7 +283,8 @@ input[type="number"] {
     border-radius: 50%;
     background-color: var(--primary-color);
     color: white;
-    border: 4px solid var(--bg-card); /* To blend with the background card */
+    border: 4px solid var(--bg-card);
+    /* To blend with the background card */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -303,24 +316,24 @@ input[type="number"] {
     .container {
         padding: 25px 20px;
     }
-    
+
     header h1 {
         font-size: 1.6rem;
     }
-    
+
     input[type="number"] {
         font-size: 1.4rem;
     }
-    
+
     .custom-select {
         width: 110px;
     }
-    
+
     .custom-select select {
         padding: 10px 25px 10px 10px;
         font-size: 0.85rem;
     }
-    
+
     .tab-btn {
         padding: 10px 5px;
         font-size: 0.8rem;
