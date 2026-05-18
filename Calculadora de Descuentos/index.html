@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Descuentos | Navaja Suiza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    <div class="container">
+        <header>
+            <div class="icon-container">
+                <i class="ph ph-tag"></i>
+            </div>
+            <h1>Descuentos</h1>
+            <p>Calcula el precio final y tu ahorro total</p>
+        </header>
+
+        <div class="app-wrapper">
+            <!-- Precio Original -->
+            <div class="input-group">
+                <div class="input-header">
+                    <label>Precio Original</label>
+                </div>
+                <div class="input-row has-icon">
+                    <i class="ph ph-currency-dollar currency-icon"></i>
+                    <input type="number" id="originalPrice" placeholder="0.00" min="0" step="0.01">
+                </div>
+            </div>
+
+            <!-- Descuentos Dinámicos -->
+            <div class="discounts-section">
+                <div class="discounts-header">
+                    <label>Descuentos a aplicar (%)</label>
+                </div>
+                <div id="discounts-container" class="discounts-container">
+                    <!-- Los inputs de descuento irán aquí -->
+                </div>
+                <button id="add-discount-btn" class="secondary-btn add-btn">
+                    <i class="ph ph-plus"></i> Añadir descuento extra
+                </button>
+            </div>
+
+            <!-- Resultados -->
+            <div class="results-card">
+                <div class="result-row">
+                    <div class="result-label">
+                        <h4>Ahorro Total</h4>
+                        <p id="effective-discount">0% de descuento efectivo</p>
+                    </div>
+                    <div class="result-value savings" id="totalSaved">$0.00</div>
+                </div>
+
+                <div class="result-row total">
+                    <div class="result-label">
+                        <h4>Precio Final</h4>
+                        <p>a pagar</p>
+                    </div>
+                    <div class="result-value" id="finalPrice">$0.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

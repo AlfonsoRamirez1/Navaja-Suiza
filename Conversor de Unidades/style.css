@@ -83,7 +83,7 @@ body {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
         0 0 0 1px rgba(255, 255, 255, 0.02) inset;
     width: 100%;
-    max-width: 480px;
+    max-width: 550px; /* Aumentado para acomodar más pestañas */
     position: relative;
     z-index: 1;
 }
@@ -130,6 +130,12 @@ header p {
     padding: 6px;
     margin-bottom: 30px;
     gap: 4px;
+    overflow-x: auto; /* Permitir scroll si hay muchas pestañas en pantallas pequeñas */
+}
+
+/* Ocultar barra de scroll en WebKit */
+.category-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .tab-btn {
@@ -139,18 +145,25 @@ header p {
     color: var(--text-muted);
     padding: 12px 10px;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Reducido ligeramente */
     font-weight: 500;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
+    flex-direction: column; /* Icono arriba, texto abajo para ahorrar espacio */
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 4px;
+    min-width: 70px;
 }
 
 .tab-btn i {
     font-size: 1.2rem;
+}
+
+.tab-text {
+    font-size: 0.7rem;
+    white-space: nowrap;
 }
 
 .tab-btn:hover {
@@ -251,6 +264,8 @@ input[type="number"] {
     cursor: pointer;
     outline: none;
     transition: var(--transition);
+    /* Para prevenir que textos largos en el select rompan el layout */
+    text-overflow: ellipsis;
 }
 
 .custom-select select:focus {
@@ -312,11 +327,22 @@ input[type="number"] {
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 550px) {
     .container {
-        padding: 25px 20px;
+        padding: 25px 15px;
     }
 
+    .tab-btn {
+        min-width: 60px;
+        padding: 8px 5px;
+    }
+
+    .tab-text {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
     header h1 {
         font-size: 1.6rem;
     }
@@ -332,10 +358,5 @@ input[type="number"] {
     .custom-select select {
         padding: 10px 25px 10px 10px;
         font-size: 0.85rem;
-    }
-
-    .tab-btn {
-        padding: 10px 5px;
-        font-size: 0.8rem;
     }
 }

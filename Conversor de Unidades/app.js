@@ -21,6 +21,25 @@ const unitsData = {
         celsius: { name: 'Celsius' },
         fahrenheit: { name: 'Fahrenheit' },
         kelvin: { name: 'Kelvin' }
+    },
+    volume: {
+        liter: { name: 'Litro', factor: 1 },
+        milliliter: { name: 'Mililitro', factor: 0.001 },
+        gallon_us: { name: 'Galón (EE. UU.)', factor: 3.78541 },
+        gallon_uk: { name: 'Galón (Reino Unido)', factor: 4.54609 },
+        fluid_ounce_us: { name: 'Onza líquida (EE. UU.)', factor: 0.0295735 },
+        cup_us: { name: 'Taza (EE. UU.)', factor: 0.236588 },
+        pint_us: { name: 'Pinta (EE. UU.)', factor: 0.473176 },
+        quart_us: { name: 'Cuarto (EE. UU.)', factor: 0.946353 }
+    },
+    data: {
+        byte: { name: 'Byte (B)', factor: 1 },
+        kilobyte: { name: 'Kilobyte (KB)', factor: 1024 },
+        megabyte: { name: 'Megabyte (MB)', factor: 1048576 },
+        gigabyte: { name: 'Gigabyte (GB)', factor: 1073741824 },
+        terabyte: { name: 'Terabyte (TB)', factor: 1099511627776 },
+        petabyte: { name: 'Petabyte (PB)', factor: 1125899906842624 },
+        bit: { name: 'Bit (b)', factor: 0.125 }
     }
 };
 
@@ -142,7 +161,7 @@ function convert(direction) {
     isConverting = false;
 }
 
-// Standard conversion (Length, Weight) using factors relative to a base unit
+// Standard conversion (Length, Weight, Volume, Data) using factors relative to a base unit
 function convertStandard(direction, val1, val2, u1, u2) {
     const factor1 = unitsData[currentCategory][u1].factor;
     const factor2 = unitsData[currentCategory][u2].factor;

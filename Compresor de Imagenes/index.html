@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compresor de Imágenes | Navaja Suiza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    <div class="container">
+        <header>
+            <div class="icon-container">
+                <i class="ph ph-arrows-in"></i>
+            </div>
+            <h1>Compresor de Imágenes</h1>
+            <p>Reduce el peso de tus fotos sin perder tamaño</p>
+        </header>
+
+        <div class="app-wrapper">
+            <!-- Zona de subida -->
+            <div class="upload-area" id="upload-area">
+                <i class="ph ph-upload-simple"></i>
+                <h3>Sube tu imagen</h3>
+                <p>Haz clic o arrastra un JPG/PNG aquí</p>
+                <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg, image/webp" class="hidden-input">
+            </div>
+
+            <!-- Editor de Compresión -->
+            <div class="editor-container hidden" id="editor-container">
+
+                <div class="preview-split">
+                    <div class="preview-box">
+                        <div class="preview-header">Original</div>
+                        <div class="image-wrapper">
+                            <img id="original-img" src="" alt="Original">
+                        </div>
+                        <div class="size-badge" id="original-size">0 KB</div>
+                    </div>
+
+                    <div class="preview-box compressed">
+                        <div class="preview-header">Comprimida</div>
+                        <div class="image-wrapper">
+                            <img id="compressed-img" src="" alt="Comprimida">
+                        </div>
+                        <div class="size-badge success" id="compressed-size">0 KB</div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div class="control-group">
+                        <div class="control-header">
+                            <label>Calidad de imagen</label>
+                            <span id="quality-display" class="value-display">80%</span>
+                        </div>
+                        <div class="range-container">
+                            <input type="range" id="quality-slider" min="1" max="100" value="80" step="1">
+                        </div>
+                        <p class="helper-text">Menor calidad = menor peso (pero puede verse borrosa).</p>
+                    </div>
+
+                    <!-- Información de reducción -->
+                    <div class="savings-info" id="savings-info">
+                        Reducción: <span id="savings-percentage">0%</span>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="reset-btn" class="secondary-btn">
+                            <i class="ph ph-arrow-counter-clockwise"></i> Cambiar foto
+                        </button>
+                        <button id="download-btn" class="action-btn primary">
+                            <i class="ph ph-download-simple"></i> Descargar JPG
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
