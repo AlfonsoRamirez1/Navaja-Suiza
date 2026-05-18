@@ -4,10 +4,10 @@
     --bg-card: #1e293b;
     --bg-card-hover: #334155;
 
-    --primary-color: #f59e0b; /* Amber/Orange for QR */
-    --primary-glow: rgba(245, 158, 11, 0.5);
-    --secondary-color: #d97706;
-    --secondary-glow: rgba(217, 119, 6, 0.4);
+    --primary-color: #ef4444; /* Red for PDF/Images */
+    --primary-glow: rgba(239, 68, 68, 0.5);
+    --secondary-color: #b91c1c;
+    --secondary-glow: rgba(185, 28, 28, 0.4);
 
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
@@ -38,7 +38,7 @@ body {
     min-height: 100vh;
     padding: 20px;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* Background aesthetic glow */
@@ -72,7 +72,7 @@ body {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
                 0 0 0 1px rgba(255,255,255,0.02) inset;
     width: 100%;
-    max-width: 480px;
+    max-width: 500px;
     position: relative;
     z-index: 1;
 }
@@ -115,75 +115,154 @@ header p {
 .app-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
-.input-group {
+/* Upload Area */
+.upload-area {
     background-color: rgba(15, 23, 42, 0.4);
-    border: 1px solid var(--border-color);
+    border: 2px dashed var(--border-focus);
     border-radius: var(--radius-md);
-    padding: 20px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
     transition: var(--transition);
-}
-
-.input-group:focus-within {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.1);
-    background-color: rgba(15, 23, 42, 0.6);
-}
-
-.input-header {
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.input-header label {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-}
-
-.input-row {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-.has-icon {
     position: relative;
 }
 
-.currency-icon {
-    position: absolute;
-    left: 0;
-    font-size: 1.5rem;
+.upload-area:hover, .upload-area.dragover {
+    background-color: rgba(15, 23, 42, 0.6);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.1) inset;
+}
+
+.upload-area i {
+    font-size: 3rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    transition: var(--transition);
+}
+
+.upload-area:hover i, .upload-area.dragover i {
+    color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.upload-area h3 {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+.upload-area p {
+    font-size: 0.85rem;
     color: var(--text-muted);
 }
 
-.has-icon input {
-    padding-left: 30px !important;
+.hidden-input {
+    display: none;
 }
 
-input[type="text"] {
-    flex: 1;
+/* Preview Section */
+.preview-container {
+    background: var(--bg-card-hover);
+    border-radius: var(--radius-md);
+    padding: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* Custom Scrollbar */
+.preview-container::-webkit-scrollbar {
+    width: 6px;
+}
+.preview-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.preview-container::-webkit-scrollbar-thumb {
+    background: var(--border-focus);
+    border-radius: 4px;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.preview-header h4 {
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.text-btn {
     background: transparent;
     border: none;
-    color: var(--text-main);
-    font-size: 1.2rem;
-    font-weight: 500;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.text-btn:hover {
+    color: #ef4444;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+}
+
+.img-preview-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background-color: var(--bg-dark);
+}
+
+.img-preview-card img {
     width: 100%;
-    outline: none;
-    padding: 0;
+    height: 100%;
+    object-fit: cover;
 }
 
-input[type="text"]::placeholder {
-    color: #475569;
+.remove-img-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: var(--transition);
+    opacity: 0;
 }
 
+.img-preview-card:hover .remove-img-btn {
+    opacity: 1;
+}
+
+.remove-img-btn:hover {
+    background: #ef4444;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Action Button */
 .action-btn {
     background-color: var(--primary-color);
     color: white;
@@ -199,59 +278,22 @@ input[type="text"]::placeholder {
     align-items: center;
     gap: 10px;
     box-shadow: 0 4px 12px var(--primary-glow);
-    margin-top: 10px;
 }
 
-.action-btn:hover {
+.action-btn:not(:disabled):hover {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
 }
 
-.action-btn:active {
+.action-btn:not(:disabled):active {
     transform: translateY(1px);
 }
 
-.qr-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-#qr-code {
-    padding: 20px;
-    border: 1px solid rgba(245, 158, 11, 0.2);
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.05));
-    display: none; /* Oculto inicialmente */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-#qr-code img {
-    max-width: 100%;
-    border-radius: 8px; /* Redondear bordes del QR si es posible */
-}
-
-/* El código QR generado por la librería usualmente le pone un background blanco al img o canvas */
-#qr-code canvas, #qr-code img {
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.error {
-    color: #ef4444;
-    font-size: 0.9rem;
-    margin-top: 15px;
-    background: rgba(239, 68, 68, 0.1);
-    padding: 10px 15px;
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(239, 68, 68, 0.2);
-}
-
-.hidden {
-    display: none !important;
+.action-btn:disabled {
+    background-color: var(--border-focus);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    box-shadow: none;
 }
 
 /* Responsive */
@@ -264,11 +306,15 @@ input[type="text"]::placeholder {
         font-size: 1.6rem;
     }
 
-    .input-group {
-        padding: 15px;
+    .upload-area {
+        padding: 30px 15px;
     }
 
-    input[type="text"] {
-        font-size: 1.1rem;
+    .image-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    }
+
+    .remove-img-btn {
+        opacity: 1; /* Always show delete button on mobile */
     }
 }

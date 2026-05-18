@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminador de Fondo | Navaja Suiza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    <div class="container">
+        <header>
+            <div class="icon-container">
+                <i class="ph ph-eraser"></i>
+            </div>
+            <h1>Fondo Transparente</h1>
+            <p>Borra un color sólido de tu imagen al instante</p>
+        </header>
+
+        <div class="app-wrapper">
+            <!-- Zona de subida -->
+            <div class="upload-area" id="upload-area">
+                <i class="ph ph-upload-simple"></i>
+                <h3>Sube tu imagen</h3>
+                <p>Haz clic o arrastra un JPG/PNG aquí</p>
+                <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" class="hidden-input">
+            </div>
+
+            <!-- Editor / Canvas -->
+            <div class="editor-container hidden" id="editor-container">
+                <div class="instructions">
+                    <i class="ph ph-cursor-click"></i> Haz clic en la imagen en el color que deseas borrar.
+                </div>
+
+                <div class="canvas-wrapper">
+                    <!-- El canvas mostrará la imagen. Se le aplica un fondo de cuadros (checkerboard) por CSS para ver la transparencia -->
+                    <canvas id="image-canvas"></canvas>
+                </div>
+
+                <div class="controls">
+                    <div class="control-group">
+                        <div class="control-header">
+                            <label>Color seleccionado</label>
+                            <div id="color-preview" class="color-preview" title="Ninguno"></div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-header">
+                            <label>Tolerancia</label>
+                            <span id="tolerance-display" class="value-display">20%</span>
+                        </div>
+                        <div class="range-container">
+                            <input type="range" id="tolerance-slider" min="0" max="100" value="20" step="1" disabled>
+                        </div>
+                        <p class="helper-text">Sube la tolerancia si quedan bordes del color original.</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="reset-btn" class="secondary-btn">
+                            <i class="ph ph-arrow-counter-clockwise"></i> Restaurar
+                        </button>
+                        <button id="download-btn" class="action-btn primary" disabled>
+                            <i class="ph ph-download-simple"></i> Descargar PNG
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

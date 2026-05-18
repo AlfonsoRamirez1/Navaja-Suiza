@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Propinas | Navaja Suiza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    <div class="container">
+        <header>
+            <div class="icon-container">
+                <i class="ph ph-receipt"></i>
+            </div>
+            <h1>Propinas</h1>
+            <p>Divide la cuenta rápido</p>
+        </header>
+
+        <div class="calculator-wrapper">
+            <!-- Total de la cuenta -->
+            <div class="input-group">
+                <div class="input-header">
+                    <label>Total de la cuenta</label>
+                </div>
+                <div class="input-row has-icon">
+                    <i class="ph ph-currency-dollar currency-icon"></i>
+                    <input type="number" id="billTotal" placeholder="0.00" min="0" step="0.01">
+                </div>
+            </div>
+
+            <!-- Porcentaje de propina -->
+            <div class="input-group">
+                <div class="input-header">
+                    <label>Propina (%)</label>
+                    <span id="tipPercentageDisplay" class="value-display">15%</span>
+                </div>
+                <div class="range-container">
+                    <input type="range" id="tipPercentage" min="0" max="30" value="15" step="1">
+                </div>
+                <div class="tip-presets">
+                    <button class="preset-btn" data-tip="0">0%</button>
+                    <button class="preset-btn" data-tip="10">10%</button>
+                    <button class="preset-btn active" data-tip="15">15%</button>
+                    <button class="preset-btn" data-tip="20">20%</button>
+                </div>
+            </div>
+
+            <!-- Número de personas -->
+            <div class="input-group">
+                <div class="input-header">
+                    <label>Personas</label>
+                    <span id="peopleCountDisplay" class="value-display">1</span>
+                </div>
+                <div class="people-counter">
+                    <button id="btnMinus" class="counter-btn"><i class="ph ph-minus"></i></button>
+                    <input type="number" id="peopleCount" value="1" min="1" max="100">
+                    <button id="btnPlus" class="counter-btn"><i class="ph ph-plus"></i></button>
+                </div>
+            </div>
+
+            <!-- Resultados -->
+            <div class="results-card">
+                <div class="result-row">
+                    <div class="result-label">
+                        <h4>Cuenta</h4>
+                        <p>por persona (sin propina)</p>
+                    </div>
+                    <div class="result-value" id="basePerPerson">$0.00</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">
+                        <h4>Propina</h4>
+                        <p>por persona</p>
+                    </div>
+                    <div class="result-value" id="tipPerPerson">$0.00</div>
+                </div>
+
+                <div class="result-row total">
+                    <div class="result-label">
+                        <h4>Total final</h4>
+                        <p>por persona</p>
+                    </div>
+                    <div class="result-value" id="totalPerPerson">$0.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
