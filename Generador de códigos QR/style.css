@@ -29,6 +29,11 @@
     -webkit-font-smoothing: antialiased;
 }
 
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--bg-dark);
     color: var(--text-main);
