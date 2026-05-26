@@ -90,7 +90,8 @@ header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: var(--radius-md);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto 20px;
     font-size: 28px;
     color: white;
@@ -231,7 +232,8 @@ textarea::-webkit-scrollbar-thumb:hover {
     color: var(--primary-color);
     border-radius: var(--radius-sm);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-size: 1.2rem;
 }
 

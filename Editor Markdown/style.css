@@ -90,7 +90,8 @@ header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: var(--radius-md);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto 20px;
     font-size: 28px;
     color: white;
@@ -147,7 +148,8 @@ header p {
     height: 32px;
     border-radius: 6px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: var(--transition);
     font-size: 1.1rem;

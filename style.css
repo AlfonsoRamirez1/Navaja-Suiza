@@ -91,7 +91,8 @@ header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: var(--radius-md);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto 20px;
     font-size: 32px;
     color: white;
@@ -163,7 +164,8 @@ header p {
     background-color: rgba(30, 41, 59, 0.5);
     border-radius: var(--radius-sm);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-size: 24px;
     color: var(--app-color, var(--primary-color));
     transition: var(--transition);

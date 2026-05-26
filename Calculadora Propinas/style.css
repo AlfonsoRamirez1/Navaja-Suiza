@@ -90,7 +90,8 @@ header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: var(--radius-md);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto 20px;
     font-size: 28px;
     color: white;
@@ -282,7 +283,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
     font-size: 1.2rem;
     cursor: pointer;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     transition: var(--transition);
 }
 

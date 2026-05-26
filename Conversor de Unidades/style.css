@@ -101,7 +101,8 @@ header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: var(--radius-md);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto 20px;
     font-size: 28px;
     color: white;
@@ -302,7 +303,8 @@ input[type="number"] {
     border: 4px solid var(--bg-card);
     /* To blend with the background card */
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     font-size: 1.2rem;
     transition: var(--transition);

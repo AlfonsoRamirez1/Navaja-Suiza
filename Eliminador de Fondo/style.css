@@ -90,7 +90,8 @@ header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: var(--radius-md);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto 20px;
     font-size: 28px;
     color: white;
@@ -199,7 +200,8 @@ header p {
     border-radius: var(--radius-sm);
     overflow: hidden;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 200px;
     max-height: 350px;
     margin-bottom: 20px;
@@ -314,7 +316,8 @@ input[type="range"]:not(:disabled)::-webkit-slider-thumb:hover {
     cursor: pointer;
     transition: var(--transition);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
 }
 

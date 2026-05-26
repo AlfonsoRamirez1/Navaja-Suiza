@@ -90,7 +90,8 @@ header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: var(--radius-md);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto 20px;
     font-size: 28px;
     color: white;
@@ -264,7 +265,8 @@ input[type="number"] {
     cursor: pointer;
     transition: var(--transition);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
 }
 
