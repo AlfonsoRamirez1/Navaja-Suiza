@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta name="theme-color" content="#0f172a">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Descuentos | Navaja Suiza</title>
@@ -12,6 +13,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <style>
+        .back-home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 15px;
+            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .back-home-btn:hover {
+            color: #f8fafc;
+            background: rgba(30, 41, 59, 0.8);
+            border-color: #475569;
+            transform: translateY(-2px);
+        }
+    </style>
+    <a href="../index.html" class="back-home-btn">
+        <i class="ph ph-house"></i> Inicio
+    </a>
     <div class="background-glow"></div>
     <div class="container">
         <header>

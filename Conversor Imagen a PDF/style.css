@@ -33,8 +33,7 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-main);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     min-height: 100vh;
     padding: 20px;
     position: relative;
@@ -63,6 +62,9 @@ body {
 }
 
 .container {
+    margin: auto;
+    margin-top: max(80px, 4vh);
+    margin-bottom: 40px;
     background-color: rgba(30, 41, 59, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -88,8 +90,7 @@ header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: var(--radius-md);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     margin: 0 auto 20px;
     font-size: 28px;
     color: white;
@@ -242,8 +243,7 @@ header p {
     height: 24px;
     border-radius: 50%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     cursor: pointer;
     font-size: 0.8rem;
     transition: var(--transition);
@@ -274,8 +274,7 @@ header p {
     cursor: pointer;
     transition: var(--transition);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     gap: 10px;
     box-shadow: 0 4px 12px var(--primary-glow);
 }
@@ -299,6 +298,9 @@ header p {
 /* Responsive */
 @media (max-width: 480px) {
     .container {
+    margin: auto;
+    margin-top: max(80px, 4vh);
+    margin-bottom: 40px;
         padding: 25px 20px;
     }
 
