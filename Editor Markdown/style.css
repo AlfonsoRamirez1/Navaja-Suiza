@@ -36,55 +36,44 @@ html {
 
 body {
     background-color: var(--bg-dark);
-    color: var(--text-main);
+    color: var(--md-sys-color-on-background);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
     padding: 20px;
-    position: relative;
-    overflow-x: hidden;
+    margin: 0;
+    overflow: hidden; /* El scroll ahora estará DENTRO del teléfono */
 }
 
 /* Background aesthetic glow */
-.background-glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
-    top: -200px;
-    left: -200px;
-    border-radius: 50%;
-    z-index: 0;
-    filter: blur(60px);
-    opacity: 0.7;
-    animation: pulse 10s infinite alternate;
-}
 
-@keyframes pulse {
-    0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+
+
     50% { transform: scale(1.1) translate(50px, 50px); opacity: 0.8; }
     100% { transform: scale(0.9) translate(-50px, -20px); opacity: 0.5; }
 }
 
-.container {
+.app-card-wrapper {
     margin: auto;
-    margin-top: max(80px, 4vh);
-    margin-bottom: 40px;
     background-color: rgba(30, 41, 59, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    border-radius: 32px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 40px;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255,255,255,0.02) inset;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.02) inset;
     width: 100%;
-    max-width: 900px; /* Más ancho para la vista dividida */
+    max-width: 390px; /* Ancho estándar móvil */
+    height: 844px; /* Alto estándar móvil */
+    max-height: calc(100vh - 40px); /* Para que no se corte en laptops pequeñas */
     position: relative;
     z-index: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-header {
+.tool-header {
     text-align: center;
     margin-bottom: 30px;
 }
@@ -103,18 +92,18 @@ header {
     box-shadow: 0 10px 20px var(--primary-glow);
 }
 
-header h1 {
+.tool-header h1 {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 8px;
-    background: linear-gradient(to right, #fff, #cbd5e1);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--md-sys-color-on-background);
+    
+    
+    
 }
 
-header p {
-    color: var(--text-muted);
+.tool-header p {
+    color: var(--md-sys-color-on-surface-variant);
     font-size: 0.95rem;
 }
 
@@ -130,8 +119,8 @@ header p {
     display: flex;
     justify-content: center; /* Centrar todo el contenido de la barra */
     align-items: center;
-    background-color: rgba(15, 23, 42, 0.4);
-    border: 1px solid var(--border-color);
+    background-color: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-outline);
     border-radius: var(--radius-sm);
     padding: 8px 15px;
     flex-wrap: wrap;
@@ -148,7 +137,7 @@ header p {
 .format-btn {
     background: transparent;
     border: none;
-    color: var(--text-muted);
+    color: var(--md-sys-color-on-surface-variant);
     width: 32px;
     height: 32px;
     border-radius: 6px;
@@ -162,7 +151,7 @@ header p {
 
 .format-btn:hover {
     background-color: var(--bg-card-hover);
-    color: var(--text-main);
+    color: var(--md-sys-color-on-background);
 }
 
 .divider {
@@ -179,8 +168,8 @@ header p {
 
 .toolbar-btn {
     background: var(--bg-card-hover);
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
+    color: var(--md-sys-color-on-background);
+    border: 1px solid var(--md-sys-color-outline);
     padding: 8px 12px;
     border-radius: var(--radius-sm);
     font-size: 0.85rem;
@@ -218,8 +207,8 @@ header p {
 .editor-panel {
     display: flex;
     flex-direction: column;
-    background-color: rgba(15, 23, 42, 0.4);
-    border: 1px solid var(--border-color);
+    background-color: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-outline);
     border-radius: var(--radius-md);
     overflow: hidden;
     transition: var(--transition);
@@ -241,7 +230,7 @@ header p {
 
 .panel-header label {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: var(--md-sys-color-on-surface-variant);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 600;
@@ -253,7 +242,7 @@ header p {
 .icon-btn {
     background: transparent;
     border: none;
-    color: var(--text-muted);
+    color: var(--md-sys-color-on-surface-variant);
     cursor: pointer;
     transition: var(--transition);
     font-size: 1.1rem;
@@ -267,7 +256,7 @@ textarea {
     flex: 1;
     background: transparent;
     border: none;
-    color: var(--text-main);
+    color: var(--md-sys-color-on-background);
     padding: 15px;
     font-size: 1rem;
     line-height: 1.5;
@@ -348,7 +337,7 @@ textarea::-webkit-scrollbar-thumb {
         padding: 25px 15px;
     }
 
-    header h1 {
+    .tool-header h1 {
         font-size: 1.6rem;
     }
 
@@ -364,5 +353,149 @@ textarea::-webkit-scrollbar-thumb {
 
     .action-toolbar {
         justify-content: center;
+    }
+}
+/* Flet / Material 3 AppBar & Content Padding */
+.content {
+    padding: 0 24px 40px 24px;
+    flex-grow: 1;
+    overflow-y: auto; /* El contenido hace scroll internamente */
+    overflow-x: hidden;
+    /* Ocultar scrollbar en navegadores webkit para más realismo */
+    scrollbar-width: none;
+}
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.app-bar {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    padding: 0 16px;
+    color: var(--md-sys-color-on-background);
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app-bar-leading {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.icon-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+.icon-button:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+.app-bar-title {
+    flex-grow: 1;
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 8px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Variables de Color (Theme) */
+:root[data-theme="light"] {
+    --md-sys-color-background: #fdfdfd;
+    --md-sys-color-on-background: #1c1b1f;
+    --md-sys-color-surface: #f3f3f3;
+    --md-sys-color-surface-container: #eaeaea;
+    --md-sys-color-primary: #6750a4;
+    --md-sys-color-on-surface-variant: #49454f;
+    --md-sys-color-outline: #cac4d0;
+    --md-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}
+:root[data-theme="dark"] {
+    --md-sys-color-background: #141218;
+    --md-sys-color-on-background: #e6e1e5;
+    --md-sys-color-surface: #201e23;
+    --md-sys-color-surface-container: #2b2930;
+    --md-sys-color-primary: #d0bcff;
+    --md-sys-color-on-surface-variant: #cac4d0;
+    --md-sys-color-outline: #938f99;
+    --md-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.4), 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+
+@media (max-width: 480px) {
+    body {
+        padding: 0 !important;
+        background-color: var(--bg-dark);
+    }
+    .app-card-wrapper {
+        margin: 0 !important;
+        max-width: 100% !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+    .content {
+        padding: 0 20px 25px 20px !important;
+    }
+}
+
+
+/* ==========================================================================
+   SUPER CONTRAST CARD STYLES
+   Asegura que la tarjeta resalte perfectamente contra el fondo, como el ejemplo
+   ========================================================================== */
+
+/* Tema Claro */
+:root[data-theme="light"] body {
+    background-color: #e2e8f0 !important; /* Gris claro para el fondo */
+}
+:root[data-theme="light"] .app-card-wrapper {
+    background-color: #ffffff !important; /* Blanco puro para la tarjeta */
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Tema Oscuro (Por Defecto) */
+:root[data-theme="dark"] body, body {
+    background-color: #0f172a !important; /* Azul muy oscuro para el fondo */
+}
+:root[data-theme="dark"] .app-card-wrapper, .app-card-wrapper {
+    background-color: #1e293b !important; /* Azul pizarra más claro para la tarjeta */
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* En móviles quitamos el fondo y bordes para que sea a pantalla completa */
+@media (max-width: 480px) {
+    :root[data-theme="dark"] body, body {
+        background-color: #1e293b !important;
+    }
+    :root[data-theme="light"] body {
+        background-color: #ffffff !important;
+    }
+    .app-card-wrapper {
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
     }
 }

@@ -1,31 +1,33 @@
-:root {
-    /* Color Palette - Premium Dark Mode */
-    --bg-dark: #0f172a;
-    --bg-card: #1e293b;
-    --bg-card-hover: #334155;
+/* Tokens de Color Material Design 3 (Flet style) */
+:root[data-theme="light"] {
+    --md-sys-color-background: #fdfdfd;
+    --md-sys-color-on-background: #1c1b1f;
+    --md-sys-color-surface: #f3f3f3;
+    --md-sys-color-surface-container: #eaeaea;
+    --md-sys-color-primary: #6750a4;
+    --md-sys-color-on-surface-variant: #49454f;
+    --md-sys-color-outline: #cac4d0;
+    --md-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    --hover-overlay: rgba(0, 0, 0, 0.08);
+}
 
-    --primary-color: #6366f1; /* Indigo for main hub */
-    --primary-glow: rgba(99, 102, 241, 0.5);
-    --secondary-color: #8b5cf6; /* Violet */
-    --secondary-glow: rgba(139, 92, 246, 0.4);
-
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-
-    --border-color: #334155;
-    --border-focus: #475569;
-
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --radius-lg: 24px;
-    --radius-md: 16px;
-    --radius-sm: 10px;
+:root[data-theme="dark"] {
+    --md-sys-color-background: #141218;
+    --md-sys-color-on-background: #e6e1e5;
+    --md-sys-color-surface: #201e23;
+    --md-sys-color-surface-container: #2b2930;
+    --md-sys-color-primary: #d0bcff;
+    --md-sys-color-on-surface-variant: #cac4d0;
+    --md-sys-color-outline: #938f99;
+    --md-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.4), 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+    --hover-overlay: rgba(255, 255, 255, 0.08);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -35,33 +37,20 @@ html {
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
+    background-color: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-background);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding: 40px 20px;
+    padding: 0;
     position: relative;
     overflow-x: hidden;
 }
 
 /* Background aesthetic glow */
-.background-glow {
-    position: absolute;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
-    top: -200px;
-    right: -200px;
-    border-radius: 50%;
-    z-index: 0;
-    filter: blur(80px);
-    opacity: 0.6;
-    animation: pulse 15s infinite alternate;
-}
 
-@keyframes pulse {
-    0% { transform: scale(1) translate(0, 0); opacity: 0.4; }
+
+
     50% { transform: scale(1.1) translate(-50px, 50px); opacity: 0.7; }
     100% { transform: scale(0.9) translate(50px, -20px); opacity: 0.4; }
 }
@@ -70,16 +59,16 @@ body {
     margin: auto;
     margin-top: max(80px, 4vh);
     margin-bottom: 40px;
-    background-color: rgba(30, 41, 59, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: var(--md-sys-color-surface-container);
+    
+    -webkit-
+    
     padding: 50px;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255,255,255,0.02) inset;
+    border-radius: 16px;
+    box-shadow: var(--md-elevation-1);
     width: 100%;
     max-width: 1000px;
+    width: 95%;
     position: relative;
     z-index: 1;
 }
@@ -93,7 +82,7 @@ header {
     width: 70px;
     height: 70px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    border-radius: var(--radius-md);
+    border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,14 +96,14 @@ header h1 {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 10px;
-    background: linear-gradient(to right, #fff, #cbd5e1);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--md-sys-color-on-background);
+    
+    
+    
 }
 
 header p {
-    color: var(--text-muted);
+    color: var(--md-sys-color-on-surface-variant);
     font-size: 1.1rem;
 }
 
@@ -128,12 +117,12 @@ header p {
     display: flex;
     align-items: center;
     gap: 20px;
-    background-color: rgba(15, 23, 42, 0.4);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
+    background-color: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: 12px;
     padding: 20px;
     text-decoration: none;
-    color: var(--text-main);
+    color: var(--md-sys-color-on-background);
     transition: var(--transition);
     position: relative;
     overflow: hidden;
@@ -153,8 +142,8 @@ header p {
 
 .app-card:hover {
     transform: translateY(-5px);
-    border-color: var(--border-focus);
-    background-color: rgba(30, 41, 59, 0.8);
+    border-color: var(--md-sys-color-primary);
+    background-color: var(--md-sys-color-surface-container);
     box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
 }
 
@@ -165,8 +154,8 @@ header p {
 .app-icon {
     width: 50px;
     height: 50px;
-    background-color: rgba(30, 41, 59, 0.5);
-    border-radius: var(--radius-sm);
+    background-color: var(--md-sys-color-surface-container);
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,7 +184,7 @@ header p {
 
 .app-info p {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: var(--md-sys-color-on-surface-variant);
     line-height: 1.4;
 }
 
@@ -215,4 +204,29 @@ header p {
     .apps-grid {
         grid-template-columns: 1fr;
     }
+}
+
+
+.theme-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--md-sys-color-on-background);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+.theme-btn:hover {
+    background-color: var(--hover-overlay);
+}
+header {
+    position: relative;
 }
