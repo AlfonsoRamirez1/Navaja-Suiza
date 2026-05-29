@@ -1,0 +1,29 @@
+# IDEs y Editores
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos del Sistema Operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node.js y Dependencias (que usaremos pronto)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Archivos de construcción de Android (Capacitor)
+android/app/build/
+android/.gradle/
+android/local.properties
+android/app/build/
+android/captures/
+.gradle/
+local.properties
+
+# Logs
+logs
+*.log

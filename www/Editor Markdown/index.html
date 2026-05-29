@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="theme-color" content="#0f172a">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Markdown | Navaja Suiza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        .back-home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 15px;
+            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .back-home-btn:hover {
+            color: #f8fafc;
+            background: rgba(30, 41, 59, 0.8);
+            border-color: #475569;
+            transform: translateY(-2px);
+        }
+    </style>
+    <a href="../index.html" class="back-home-btn">
+        <i class="ph ph-house"></i> Inicio
+    </a>
+    <div class="background-glow"></div>
+    <div class="container">
+        <header>
+            <div class="icon-container">
+                <i class="ph ph-markdown-logo"></i>
+            </div>
+            <h1>Editor Markdown</h1>
+            <p>Escribe fácil, genera documentos increíbles</p>
+        </header>
+
+        <div class="app-wrapper">
+            <!-- Barra de herramientas superior -->
+            <div class="top-toolbar">
+                <div class="format-toolbar">
+                    <button class="format-btn" data-format="bold" title="Negrita (Ctrl+B)">
+                        <i class="ph ph-text-b"></i>
+                    </button>
+                    <button class="format-btn" data-format="italic" title="Cursiva (Ctrl+I)">
+                        <i class="ph ph-text-italic"></i>
+                    </button>
+                    <div class="divider"></div>
+                    <button class="format-btn" data-format="h1" title="Título Principal">
+                        <i class="ph ph-text-h-one"></i>
+                    </button>
+                    <button class="format-btn" data-format="h2" title="Subtítulo">
+                        <i class="ph ph-text-h-two"></i>
+                    </button>
+                    <div class="divider"></div>
+                    <button class="format-btn" data-format="list-ul" title="Lista con viñetas">
+                        <i class="ph ph-list-bullets"></i>
+                    </button>
+                    <button class="format-btn" data-format="list-ol" title="Lista numerada">
+                        <i class="ph ph-list-numbers"></i>
+                    </button>
+                    <div class="divider"></div>
+                    <button class="format-btn" data-format="quote" title="Cita">
+                        <i class="ph ph-quotes"></i>
+                    </button>
+                    <button class="format-btn" data-format="link" title="Enlace">
+                        <i class="ph ph-link"></i>
+                    </button>
+                </div>
+
+                <div class="action-toolbar">
+                    <button id="export-html-btn" class="toolbar-btn">
+                        <i class="ph ph-file-html"></i> Guardar HTML
+                    </button>
+                    <button id="export-pdf-btn" class="toolbar-btn primary">
+                        <i class="ph ph-file-pdf"></i> Generar PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenedor del Editor (Pantalla dividida) -->
+            <div class="editor-split-view">
+                <!-- Panel de Escritura -->
+                <div class="editor-panel">
+                    <div class="panel-header">
+                        <label><i class="ph ph-pencil-simple"></i> Markdown</label>
+                        <button id="clear-btn" class="icon-btn" title="Limpiar"><i class="ph ph-trash"></i></button>
+                    </div>
+                    <textarea id="markdown-input" placeholder="# Título Principal&#10;&#10;Escribe tu texto aquí...&#10;&#10;Puedes usar **negritas**, *cursivas* o listas:&#10;- Elemento 1&#10;- Elemento 2"></textarea>
+                </div>
+
+                <!-- Panel de Vista Previa -->
+                <div class="editor-panel">
+                    <div class="panel-header">
+                        <label><i class="ph ph-eye"></i> Vista Previa</label>
+                    </div>
+                    <!-- Se le pone fondo blanco al preview para que al exportar a PDF se vea como un documento real -->
+                    <div id="preview-output" class="markdown-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Librería Marked.js para convertir Markdown a HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Librería html2pdf.js para exportar de HTML a PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

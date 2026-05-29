@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="theme-color" content="#0f172a">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Unidades | Navaja Suiza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        .back-home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 15px;
+            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .back-home-btn:hover {
+            color: #f8fafc;
+            background: rgba(30, 41, 59, 0.8);
+            border-color: #475569;
+            transform: translateY(-2px);
+        }
+    </style>
+    <a href="../index.html" class="back-home-btn">
+        <i class="ph ph-house"></i> Inicio
+    </a>
+    <div class="background-glow"></div>
+    <div class="container">
+        <header>
+            <div class="icon-container">
+                <i class="ph ph-arrows-left-right"></i>
+            </div>
+            <h1>Conversor</h1>
+            <p>Precisión instantánea</p>
+        </header>
+
+        <nav class="category-tabs">
+            <button class="tab-btn active" data-category="length" title="Longitud">
+                <i class="ph ph-ruler"></i> <span class="tab-text">Longitud</span>
+            </button>
+            <button class="tab-btn" data-category="weight" title="Peso">
+                <i class="ph ph-scales"></i> <span class="tab-text">Peso</span>
+            </button>
+            <button class="tab-btn" data-category="temperature" title="Temperatura">
+                <i class="ph ph-thermometer"></i> <span class="tab-text">Temp</span>
+            </button>
+            <button class="tab-btn" data-category="volume" title="Líquidos / Volumen">
+                <i class="ph ph-drop"></i> <span class="tab-text">Líquidos</span>
+            </button>
+            <button class="tab-btn" data-category="data" title="Almacenamiento de Datos">
+                <i class="ph ph-hard-drives"></i> <span class="tab-text">Datos</span>
+            </button>
+        </nav>
+
+        <div class="converter-wrapper">
+            <!-- Grupo Input 1 -->
+            <div class="input-group">
+                <div class="input-header">
+                    <label>De</label>
+                </div>
+                <div class="input-row">
+                    <input type="number" id="input1" placeholder="0" value="1">
+                    <div class="custom-select">
+                        <select id="unit1">
+                            <!-- Las opciones se generarán por JS -->
+                        </select>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de intercambio -->
+            <div class="swap-container">
+                <button id="swap-btn" class="swap-btn" title="Intercambiar unidades">
+                    <i class="ph ph-arrows-down-up"></i>
+                </button>
+            </div>
+
+            <!-- Grupo Input 2 -->
+            <div class="input-group">
+                <div class="input-header">
+                    <label>A</label>
+                </div>
+                <div class="input-row">
+                    <input type="number" id="input2" placeholder="0">
+                    <div class="custom-select">
+                        <select id="unit2">
+                            <!-- Las opciones se generarán por JS -->
+                        </select>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

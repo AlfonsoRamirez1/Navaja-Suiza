@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Navaja Suiza</string>
+    <string name="title_activity_main">Navaja Suiza</string>
+    <string name="package_name">com.alfonsoramirez.navajasuiza</string>
+    <string name="custom_url_scheme">com.alfonsoramirez.navajasuiza</string>
+</resources>

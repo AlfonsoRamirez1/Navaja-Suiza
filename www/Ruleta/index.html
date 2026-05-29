@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="theme-color" content="#0f172a">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector Aleatorio | Navaja Suiza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        .back-home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 15px;
+            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .back-home-btn:hover {
+            color: #f8fafc;
+            background: rgba(30, 41, 59, 0.8);
+            border-color: #475569;
+            transform: translateY(-2px);
+        }
+    </style>
+    <a href="../index.html" class="back-home-btn">
+        <i class="ph ph-house"></i> Inicio
+    </a>
+    <div class="background-glow"></div>
+    <div class="container">
+        <header>
+            <div class="icon-container">
+                <i class="ph ph-shuffle"></i>
+            </div>
+            <h1>Sorteo Rápido</h1>
+            <p>Deja que el azar decida por ti</p>
+        </header>
+
+        <div class="app-wrapper">
+            <!-- Zona del resultado -->
+            <div class="result-container" id="result-container">
+                <div class="winner-label hidden" id="winner-label">¡Tenemos un ganador!</div>
+                <div class="result-display" id="result-display">
+                    <span class="placeholder-text">Ingresa opciones y gira</span>
+                </div>
+            </div>
+
+            <!-- Controles -->
+            <div class="input-group">
+                <div class="input-header">
+                    <label>Opciones (Una por línea)</label>
+                    <button id="clear-btn" class="icon-btn" title="Limpiar lista">
+                        <i class="ph ph-trash"></i>
+                    </button>
+                </div>
+                <textarea id="options-input" placeholder="Ejemplo:&#10;Pizza&#10;Hamburguesa&#10;Tacos&#10;Sushi" rows="5"></textarea>
+                <div class="stats">
+                    <span id="options-count">0 opciones ingresadas</span>
+                </div>
+            </div>
+
+            <button id="spin-btn" class="action-btn primary">
+                <i class="ph ph-play"></i> Seleccionar al azar
+            </button>
+        </div>
+    </div>
+
+    <!-- Librería para un efecto de confeti (opcional, muy vistoso) -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

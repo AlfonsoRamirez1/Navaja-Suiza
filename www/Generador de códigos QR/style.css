@@ -1,0 +1,284 @@
+:root {
+    /* Color Palette - Premium Dark Mode */
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #334155;
+
+    --primary-color: #f59e0b; /* Amber/Orange for QR */
+    --primary-glow: rgba(245, 158, 11, 0.5);
+    --secondary-color: #d97706;
+    --secondary-glow: rgba(217, 119, 6, 0.4);
+
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+
+    --border-color: #334155;
+    --border-focus: #475569;
+
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background aesthetic glow */
+.background-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
+    top: -200px;
+    left: -200px;
+    border-radius: 50%;
+    z-index: 0;
+    filter: blur(60px);
+    opacity: 0.7;
+    animation: pulse 10s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+    50% { transform: scale(1.1) translate(50px, 50px); opacity: 0.8; }
+    100% { transform: scale(0.9) translate(-50px, -20px); opacity: 0.5; }
+}
+
+.container {
+    margin: auto;
+    margin-top: max(80px, 4vh);
+    margin-bottom: 40px;
+    background-color: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255,255,255,0.02) inset;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.icon-container {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+    color: white;
+    box-shadow: 0 10px 20px var(--primary-glow);
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: linear-gradient(to right, #fff, #cbd5e1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* App Layout */
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    background-color: rgba(15, 23, 42, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    transition: var(--transition);
+}
+
+.input-group:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.1);
+    background-color: rgba(15, 23, 42, 0.6);
+}
+
+.input-header {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-header label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.input-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.has-icon {
+    position: relative;
+}
+
+.currency-icon {
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+}
+
+.has-icon input {
+    padding-left: 30px !important;
+}
+
+input[type="text"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    font-weight: 500;
+    width: 100%;
+    outline: none;
+    padding: 0;
+}
+
+input[type="text"]::placeholder {
+    color: #475569;
+}
+
+.action-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px var(--primary-glow);
+    margin-top: 10px;
+}
+
+.action-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+.qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#qr-code {
+    padding: 20px;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.05));
+    display: none; /* Oculto inicialmente */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+#qr-code img {
+    max-width: 100%;
+    border-radius: 8px; /* Redondear bordes del QR si es posible */
+}
+
+/* El código QR generado por la librería usualmente le pone un background blanco al img o canvas */
+#qr-code canvas, #qr-code img {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.error {
+    color: #ef4444;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 10px 15px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+    margin: auto;
+    margin-top: max(80px, 4vh);
+    margin-bottom: 40px;
+        padding: 25px 20px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .input-group {
+        padding: 15px;
+    }
+
+    input[type="text"] {
+        font-size: 1.1rem;
+    }
+}
