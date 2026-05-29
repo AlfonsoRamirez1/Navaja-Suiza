@@ -27,3 +27,6 @@ local.properties
 # Logs
 logs
 *.log
+
+# Carpeta de salida final del APK
+apk/

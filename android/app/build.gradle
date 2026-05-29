@@ -52,3 +52,15 @@ try {
 } catch(Exception e) {
     logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
 }
+
+android.applicationVariants.all { variant ->
+    variant.outputs.all { output ->
+        output.outputFileName = "Navaja suiza.apk"
+    }
+    variant.assembleProvider.get().doLast {
+        copy {
+            from variant.outputs*.outputFile
+            into "${rootDir}/../apk"
+        }
+    }
+}
