@@ -138,13 +138,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Controles ---
-    qualitySlider.addEventListener('input', (e) => {
+    qualitySlider.addEventListener('ionInput', (e) => {
         qualityDisplay.textContent = `${e.target.value}%`;
     });
 
-    // En lugar de comprimir en cada píxel que se mueve (lo que causaría lag),
-    // comprimimos cuando el usuario suelta el slider (evento 'change')
-    qualitySlider.addEventListener('change', compressImage);
+    qualitySlider.addEventListener('ionChange', compressImage);
 
     resetBtn.addEventListener('click', () => {
         originalFile = null;

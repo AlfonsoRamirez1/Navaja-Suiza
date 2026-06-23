@@ -1,92 +1,153 @@
-<!DOCTYPE html><html lang="es" data-theme="light"><head>
-    <meta name="theme-color" content="#fdfdfd" id="theme-color-meta">
+<!DOCTYPE html>
+<html lang="es" class="ion-palette-light">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminador de Fondo | Navaja Suiza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <!-- Iconos Phosphor -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=1780083022400">
+    <!-- Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/palettes/dark.class.css" />
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --ion-color-tertiary: #ec4899;
+            --ion-color-tertiary-rgb: 236,72,153;
+            --ion-color-tertiary-contrast: #ffffff;
+            --ion-color-tertiary-contrast-rgb: 255,255,255;
+            --ion-color-tertiary-shade: #d04087;
+            --ion-color-tertiary-tint: #ee5aa3;
+        }
+    </style>
+    <style>
+        .upload-area {
+            border: 2px dashed var(--ion-color-medium);
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area.dragover {
+            border-color: var(--ion-color-tertiary);
+            background: var(--ion-color-light);
+        }
+        .hidden { display: none !important; }
+        .canvas-wrapper {
+            width: 100%;
+            overflow: auto;
+            border: 1px solid var(--ion-color-light);
+            border-radius: 8px;
+            background-color: #f0f0f0;
+            background-image: 
+                linear-gradient(45deg, #ccc 25%, transparent 25%), 
+                linear-gradient(135deg, #ccc 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #ccc 75%),
+                linear-gradient(135deg, transparent 75%, #ccc 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            cursor: crosshair;
+            margin-top: 15px;
+        }
+        canvas {
+            max-width: 100%;
+            display: block;
+        }
+        .color-preview {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid var(--ion-color-medium);
+            background-color: transparent;
+        }
+    </style>
 </head>
 <body>
-    <div class="app-card-wrapper"><header class="app-bar">
-        <div class="app-bar-leading">
-            <a href="../index.html" class="icon-button"><i class="ph ph-arrow-left"></i></a>
-        </div>
-        <div class="app-bar-title">Fondo Transparente</div>
-        <div class="app-bar-actions">
-            <button class="icon-button" id="theme-toggle" aria-label="Cambiar tema">
-                <i class="ph ph-moon" id="theme-icon"></i>
-            </button>
-        </div>
-    </header><div class="content">
-        <div class="tool-header">
-            <div class="icon-container">
-                <i class="ph ph-eraser"></i>
-            </div>
-            <h1>Fondo Transparente</h1>
-            <p>Borra un color sólido de tu imagen al instante</p>
-        </div>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="tertiary">
+                <ion-buttons slot="start">
+                    <ion-button href="../index.html">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Fondo Transparente</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button id="theme-toggle">
+                        <ion-icon name="moon" id="theme-icon"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
 
-        <div class="app-wrapper">
+        <ion-content class="ion-padding">
+            <div class="ion-text-center ion-padding-vertical">
+                <ion-icon name="color-wand" color="tertiary" style="font-size: 64px;"></ion-icon>
+                <h2>Fondo Transparente</h2>
+                <p>Borra un color sólido de tu imagen al instante</p>
+            </div>
+
             <!-- Zona de subida -->
             <div class="upload-area" id="upload-area">
-                <i class="ph ph-upload-simple"></i>
+                <ion-icon name="cloud-upload-outline" style="font-size: 48px; color: var(--ion-color-medium);"></ion-icon>
                 <h3>Sube tu imagen</h3>
                 <p>Haz clic o arrastra un JPG/PNG aquí</p>
-                <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" class="hidden-input">
+                <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" class="hidden">
             </div>
 
             <!-- Editor / Canvas -->
-            <div class="editor-container hidden" id="editor-container">
-                <div class="instructions">
-                    <i class="ph ph-cursor-click"></i> Haz clic en la imagen en el color que deseas borrar.
-                </div>
-
-                <div class="canvas-wrapper">
-                    <!-- El canvas mostrará la imagen. Se le aplica un fondo de cuadros (checkerboard) por CSS para ver la transparencia -->
-                    <canvas id="image-canvas"></canvas>
-                </div>
-
-                <div class="controls">
-                    <div class="control-group">
-                        <div class="control-header">
-                            <label>Color seleccionado</label>
-                            <div id="color-preview" class="color-preview" title="Ninguno"></div>
+            <div id="editor-container" class="hidden">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-subtitle>
+                            <ion-icon name="locate" color="tertiary" style="vertical-align: middle;"></ion-icon> Haz clic en la imagen en el color que deseas borrar.
+                        </ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <div class="canvas-wrapper">
+                            <canvas id="image-canvas"></canvas>
                         </div>
-                    </div>
+                    </ion-card-content>
+                </ion-card>
 
-                    <div class="control-group">
-                        <div class="control-header">
-                            <label>Tolerancia</label>
-                            <span id="tolerance-display" class="value-display">20%</span>
-                        </div>
-                        <div class="range-container">
-                            <input type="range" id="tolerance-slider" min="0" max="100" value="20" step="1" disabled="">
-                        </div>
-                        <p class="helper-text">Sube la tolerancia si quedan bordes del color original.</p>
-                    </div>
+                <ion-card class="ion-margin-top">
+                    <ion-card-content>
+                        <ion-item lines="none">
+                            <ion-label>Color seleccionado</ion-label>
+                            <div slot="end" id="color-preview" class="color-preview" title="Ninguno"></div>
+                        </ion-item>
 
-                    <div class="action-buttons">
-                        <button id="reset-btn" class="secondary-btn">
-                            <i class="ph ph-arrow-counter-clockwise"></i> Restaurar
-                        </button>
-                        <button id="download-btn" class="action-btn primary" disabled="">
-                            <i class="ph ph-download-simple"></i> Descargar PNG
-                        </button>
-                    </div>
-                </div>
+                        <ion-item lines="none" class="ion-margin-top">
+                            <ion-label>Tolerancia</ion-label>
+                            <ion-note slot="end" id="tolerance-display" color="tertiary">20%</ion-note>
+                        </ion-item>
+                        <ion-range id="tolerance-slider" min="0" max="100" value="20" step="1" color="tertiary" disabled></ion-range>
+                        <p class="ion-text-center" style="font-size: 0.85em; color: var(--ion-color-medium);">Sube la tolerancia si quedan bordes del color original.</p>
+
+                        <ion-row class="ion-margin-top">
+                            <ion-col>
+                                <ion-button fill="outline" expand="block" id="reset-btn" color="medium">
+                                    <ion-icon name="refresh" slot="start"></ion-icon> Restaurar
+                                </ion-button>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button expand="block" id="download-btn" color="tertiary" disabled>
+                                    <ion-icon name="download" slot="start"></ion-icon> Descargar PNG
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
             </div>
-        </div>
-    </div></div>
-
-    
-    
-    
-    
+        </ion-content>
+    </ion-app>
 
     <script src="app.js"></script>
-
-<script src="../main.js"></script></body></html>
+    <script src="../main.js"></script>
+</body>
+</html>

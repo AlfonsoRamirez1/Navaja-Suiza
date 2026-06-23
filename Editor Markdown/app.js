@@ -22,11 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Inserción de Formato ---
-    function insertFormat(formatObj) {
-        const startPos = markdownInput.selectionStart;
-        const endPos = markdownInput.selectionEnd;
-        const selectedText = markdownInput.value.substring(startPos, endPos);
+    async function insertFormat(formatObj) {
+        const nativeInput = await markdownInput.getInputElement();
+        const startPos = nativeInput.selectionStart;
+        const endPos = nativeInput.selectionEnd;
         const currentText = markdownInput.value;
+        const selectedText = currentText.substring(startPos, endPos);
 
         let insertion = '';
         let newCursorPos = 0;
@@ -70,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
         markdownInput.value = currentText.substring(0, startPos) + insertion + currentText.substring(endPos);
         
         // Restaurar foco y cursor
-        markdownInput.focus();
-        markdownInput.setSelectionRange(newCursorPos, newCursorPos);
+        await markdownInput.setFocus();
+        nativeInput.setSelectionRange(newCursorPos, newCursorPos);
         
         // Actualizar vista previa
         renderMarkdown();
@@ -87,13 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Renderizar en tiempo real mientras se escribe
-    markdownInput.addEventListener('input', renderMarkdown);
+    markdownInput.addEventListener('ionInput', renderMarkdown);
 
     // Botón de limpiar
     clearBtn.addEventListener('click', () => {
         markdownInput.value = '';
         renderMarkdown();
-        markdownInput.focus();
+        markdownInput.setFocus();
     });
 
     // --- Funciones de Exportación ---

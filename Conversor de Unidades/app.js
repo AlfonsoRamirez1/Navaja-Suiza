@@ -44,7 +44,7 @@ const unitsData = {
 };
 
 // DOM Elements
-const tabs = document.querySelectorAll('.tab-btn');
+const categoryTabs = document.getElementById('category-tabs');
 const input1 = document.getElementById('input1');
 const input2 = document.getElementById('input2');
 const select1 = document.getElementById('unit1');
@@ -63,11 +63,11 @@ function init() {
     select2.value = keys[1]; // Ej: Kilómetro
     
     // Add event listeners
-    tabs.forEach(tab => tab.addEventListener('click', handleTabClick));
-    input1.addEventListener('input', () => convert('forward'));
-    input2.addEventListener('input', () => convert('backward'));
-    select1.addEventListener('change', () => convert('forward'));
-    select2.addEventListener('change', () => convert('backward'));
+    categoryTabs.addEventListener('ionChange', handleTabClick);
+    input1.addEventListener('ionInput', () => convert('forward'));
+    input2.addEventListener('ionInput', () => convert('backward'));
+    select1.addEventListener('ionChange', () => convert('forward'));
+    select2.addEventListener('ionChange', () => convert('backward'));
     swapBtn.addEventListener('click', handleSwap);
     
     // Initial conversion
@@ -81,12 +81,12 @@ function populateSelects(category) {
     
     const units = unitsData[category];
     for (const key in units) {
-        const option1 = document.createElement('option');
+        const option1 = document.createElement('ion-select-option');
         option1.value = key;
         option1.textContent = units[key].name;
         select1.appendChild(option1);
         
-        const option2 = document.createElement('option');
+        const option2 = document.createElement('ion-select-option');
         option2.value = key;
         option2.textContent = units[key].name;
         select2.appendChild(option2);
@@ -95,14 +95,8 @@ function populateSelects(category) {
 
 // Handle tab changes
 function handleTabClick(e) {
-    // Remove active class from all tabs
-    tabs.forEach(tab => tab.classList.remove('active'));
-    // Add active class to clicked tab
-    const clickedTab = e.currentTarget;
-    clickedTab.classList.add('active');
-    
     // Update category
-    currentCategory = clickedTab.dataset.category;
+    currentCategory = e.detail.value;
     
     // Repopulate and reset
     populateSelects(currentCategory);

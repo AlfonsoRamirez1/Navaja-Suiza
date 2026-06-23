@@ -1,64 +1,94 @@
-<!DOCTYPE html><html lang="es" data-theme="light"><head>
-    <meta name="theme-color" content="#fdfdfd" id="theme-color-meta">
+<!DOCTYPE html>
+<html lang="es" class="ion-palette-light">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Códigos QR | Navaja Suiza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <!-- Iconos Phosphor -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=1780083022400">
+    <!-- Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/palettes/dark.class.css" />
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --ion-color-dark: #f59e0b;
+            --ion-color-dark-rgb: 245,158,11;
+            --ion-color-dark-contrast: #ffffff;
+            --ion-color-dark-contrast-rgb: 255,255,255;
+            --ion-color-dark-shade: #d88b0a;
+            --ion-color-dark-tint: #f6a823;
+        }
+    </style>
+    <style>
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #qr-code img {
+            border: 8px solid white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .hidden { display: none !important; }
+    </style>
 </head>
 <body>
-    <div class="app-card-wrapper"><header class="app-bar">
-        <div class="app-bar-leading">
-            <a href="../index.html" class="icon-button"><i class="ph ph-arrow-left"></i></a>
-        </div>
-        <div class="app-bar-title">Generador QR</div>
-        <div class="app-bar-actions">
-            <button class="icon-button" id="theme-toggle" aria-label="Cambiar tema">
-                <i class="ph ph-moon" id="theme-icon"></i>
-            </button>
-        </div>
-    </header><div class="content">
-        <div class="tool-header">
-            <div class="icon-container">
-                <i class="ph ph-qr-code"></i>
-            </div>
-            <h1>Generador QR</h1>
-            <p>Comparte enlaces al instante</p>
-        </div>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="dark">
+                <ion-buttons slot="start">
+                    <ion-button href="../index.html">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Generador QR</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button id="theme-toggle">
+                        <ion-icon name="moon" id="theme-icon"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
 
-        <div class="app-wrapper">
-            <div class="input-group">
-                <div class="input-header">
-                    <label>Texto o Enlace</label>
-                </div>
-                <div class="input-row has-icon">
-                    <i class="ph ph-link currency-icon"></i>
-                    <input type="text" id="qr-text" placeholder="https://..." autocomplete="off">
-                </div>
+        <ion-content class="ion-padding">
+            <div class="ion-text-center ion-padding-vertical">
+                <ion-icon name="qr-code" color="dark" style="font-size: 64px;"></ion-icon>
+                <h2>Generador QR</h2>
+                <p>Comparte enlaces al instante</p>
             </div>
 
-            <button id="generate-btn" class="action-btn">
-                <i class="ph ph-magic-wand"></i> Generar QR
-            </button>
+            <ion-card>
+                <ion-card-content>
+                    <ion-item lines="none">
+                        <ion-label position="stacked">Texto o Enlace</ion-label>
+                    </ion-item>
+                    <ion-item fill="outline" class="ion-margin-bottom">
+                        <ion-icon name="link" slot="start" color="medium"></ion-icon>
+                        <ion-input type="text" id="qr-text" placeholder="https://..." autocomplete="off"></ion-input>
+                    </ion-item>
 
-            <div class="qr-section">
-                <div id="qr-code"></div>
-                <p id="error-msg" class="error hidden">Por favor, ingresa un texto válido.</p>
-            </div>
-        </div>
-    </div></div>
+                    <ion-button expand="block" color="dark" id="generate-btn">
+                        <ion-icon name="color-wand" slot="start"></ion-icon> Generar QR
+                    </ion-button>
 
-    
-    
-    
-    
+                    <div class="qr-section">
+                        <div id="qr-code"></div>
+                        <ion-text color="danger" id="error-msg" class="hidden ion-margin-top">
+                            <p>Por favor, ingresa un texto válido.</p>
+                        </ion-text>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-content>
+    </ion-app>
 
     <!-- Incluyendo librería qrcode.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="index.js"></script>
-
-<script src="../main.js"></script></body></html>
+    <script src="../main.js"></script>
+</body>
+</html>

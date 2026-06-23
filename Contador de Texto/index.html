@@ -1,89 +1,117 @@
-<!DOCTYPE html><html lang="es" data-theme="light"><head>
-    <meta name="theme-color" content="#fdfdfd" id="theme-color-meta">
+<!DOCTYPE html>
+<html lang="es" class="ion-palette-light">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador de Texto | Navaja Suiza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <!-- Iconos Phosphor -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=1780083022400">
+    <!-- Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/palettes/dark.class.css" />
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --ion-color-tertiary: #eab308;
+            --ion-color-tertiary-rgb: 234,179,8;
+            --ion-color-tertiary-contrast: #ffffff;
+            --ion-color-tertiary-contrast-rgb: 255,255,255;
+            --ion-color-tertiary-shade: #ce9e07;
+            --ion-color-tertiary-tint: #ecbb21;
+        }
+    </style>
 </head>
 <body>
-    <div class="app-card-wrapper"><header class="app-bar">
-        <div class="app-bar-leading">
-            <a href="../index.html" class="icon-button"><i class="ph ph-arrow-left"></i></a>
-        </div>
-        <div class="app-bar-title">Contador de Texto</div>
-        <div class="app-bar-actions">
-            <button class="icon-button" id="theme-toggle" aria-label="Cambiar tema">
-                <i class="ph ph-moon" id="theme-icon"></i>
-            </button>
-        </div>
-    </header><div class="content">
-        <div class="tool-header">
-            <div class="icon-container">
-                <i class="ph ph-text-t"></i>
-            </div>
-            <h1>Contador de Texto</h1>
-            <p>Mide tus palabras y caracteres</p>
-        </div>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="tertiary">
+                <ion-buttons slot="start">
+                    <ion-button href="../index.html">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Contador de Texto</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button id="theme-toggle">
+                        <ion-icon name="moon" id="theme-icon"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
 
-        <div class="app-wrapper">
-            <!-- Área de texto -->
-            <div class="input-group">
-                <div class="input-header">
-                    <label>Tu texto</label>
-                    <button id="clear-btn" class="icon-btn" title="Limpiar texto">
-                        <i class="ph ph-trash"></i>
-                    </button>
-                </div>
-                <textarea id="text-input" placeholder="Escribe o pega tu texto aquí..." rows="6"></textarea>
+        <ion-content class="ion-padding">
+            <div class="ion-text-center ion-padding-vertical">
+                <ion-icon name="text" color="tertiary" style="font-size: 64px;"></ion-icon>
+                <h2>Contador de Texto</h2>
+                <p>Mide tus palabras y caracteres</p>
             </div>
 
-            <!-- Estadísticas -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="ph ph-text-aa"></i></div>
-                    <div class="stat-info">
-                        <h3>Palabras</h3>
-                        <p id="word-count">0</p>
-                    </div>
-                </div>
+            <ion-card>
+                <ion-card-header>
+                    <ion-row class="ion-align-items-center">
+                        <ion-col>
+                            <ion-card-title>Tu texto</ion-card-title>
+                        </ion-col>
+                        <ion-col size="auto">
+                            <ion-button fill="clear" color="danger" id="clear-btn" title="Limpiar texto">
+                                <ion-icon name="trash" slot="icon-only"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-textarea id="text-input" placeholder="Escribe o pega tu texto aquí..." rows="6" fill="outline"></ion-textarea>
+                </ion-card-content>
+            </ion-card>
 
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="ph ph-hash"></i></div>
-                    <div class="stat-info">
-                        <h3>Caracteres</h3>
-                        <p id="char-count">0</p>
-                    </div>
-                </div>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="6">
+                        <ion-card color="light">
+                            <ion-card-content class="ion-text-center">
+                                <ion-icon name="document-text-outline" color="primary" style="font-size: 32px;"></ion-icon>
+                                <h3>Palabras</h3>
+                                <strong style="font-size: 1.5rem;" id="word-count" color="primary">0</strong>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
 
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="ph ph-scissors"></i></div>
-                    <div class="stat-info">
-                        <h3>Sin espacios</h3>
-                        <p id="char-no-spaces-count">0</p>
-                    </div>
-                </div>
+                    <ion-col size="6">
+                        <ion-card color="light">
+                            <ion-card-content class="ion-text-center">
+                                <ion-icon name="code-slash-outline" color="secondary" style="font-size: 32px;"></ion-icon>
+                                <h3>Caracteres</h3>
+                                <strong style="font-size: 1.5rem;" id="char-count" color="secondary">0</strong>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
 
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="ph ph-paragraph"></i></div>
-                    <div class="stat-info">
-                        <h3>Párrafos</h3>
-                        <p id="paragraph-count">0</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div></div>
+                    <ion-col size="6">
+                        <ion-card color="light">
+                            <ion-card-content class="ion-text-center">
+                                <ion-icon name="cut-outline" color="tertiary" style="font-size: 32px;"></ion-icon>
+                                <h3>Sin espacios</h3>
+                                <strong style="font-size: 1.5rem;" id="char-no-spaces-count" color="tertiary">0</strong>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
 
-    
-    
-    
-    
+                    <ion-col size="6">
+                        <ion-card color="light">
+                            <ion-card-content class="ion-text-center">
+                                <ion-icon name="list-outline" color="success" style="font-size: 32px;"></ion-icon>
+                                <h3>Párrafos</h3>
+                                <strong style="font-size: 1.5rem;" id="paragraph-count" color="success">0</strong>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </ion-content>
+    </ion-app>
 
     <script src="app.js"></script>
-
-<script src="../main.js"></script></body></html>
+    <script src="../main.js"></script>
+</body>
+</html>

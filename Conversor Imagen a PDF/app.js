@@ -69,6 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
         imageGrid.innerHTML = '';
         
         images.forEach((imgSrc, index) => {
+            const col = document.createElement('ion-col');
+            col.size = '6';
+            col.sizeMd = '4';
+            col.sizeLg = '3';
+
             const card = document.createElement('div');
             card.className = 'img-preview-card';
             
@@ -77,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const deleteBtn = document.createElement('button');
             deleteBtn.className = 'remove-img-btn';
-            deleteBtn.innerHTML = '<i class="ph ph-x"></i>';
+            deleteBtn.innerHTML = '<ion-icon name="close"></ion-icon>';
             deleteBtn.title = 'Eliminar';
             
             // Eliminar imagen específica
@@ -90,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             card.appendChild(img);
             card.appendChild(deleteBtn);
-            imageGrid.appendChild(card);
+            col.appendChild(card);
+            imageGrid.appendChild(col);
         });
     }
 

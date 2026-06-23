@@ -160,9 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Controles ---
-    toleranceSlider.addEventListener('input', (e) => {
+    toleranceSlider.addEventListener('ionInput', (e) => {
         toleranceDisplay.textContent = `${e.target.value}%`;
-        removeColor(); // Re-aplicar el algoritmo en tiempo real al mover el slider
+    });
+    
+    toleranceSlider.addEventListener('ionChange', (e) => {
+        removeColor(); // Re-aplicar el algoritmo al soltar
     });
 
     resetBtn.addEventListener('click', () => {

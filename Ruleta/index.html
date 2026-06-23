@@ -1,75 +1,132 @@
-<!DOCTYPE html><html lang="es" data-theme="light"><head>
-    <meta name="theme-color" content="#fdfdfd" id="theme-color-meta">
+<!DOCTYPE html>
+<html lang="es" class="ion-palette-light">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selector Aleatorio | Navaja Suiza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <!-- Iconos Phosphor -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=1780083022400">
+    <!-- Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/palettes/dark.class.css" />
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --ion-color-warning: #a855f7;
+            --ion-color-warning-rgb: 168,85,247;
+            --ion-color-warning-contrast: #ffffff;
+            --ion-color-warning-contrast-rgb: 255,255,255;
+            --ion-color-warning-shade: #944be9;
+            --ion-color-warning-tint: #b166f8;
+        }
+    </style>
+    <style>
+        .result-container {
+            text-align: center;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 16px;
+            background: var(--ion-color-light);
+            margin-bottom: 20px;
+        }
+        .result-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--ion-color-dark);
+            transition: all 0.3s;
+        }
+        .result-display.spinning {
+            color: var(--ion-color-medium);
+            filter: blur(1px);
+        }
+        .result-display.winner {
+            color: var(--ion-color-success);
+            font-size: 2.5rem;
+            transform: scale(1.1);
+        }
+        .placeholder-text {
+            color: var(--ion-color-medium);
+            font-weight: normal;
+            font-size: 1.5rem;
+        }
+        .hidden { display: none !important; }
+    </style>
 </head>
 <body>
-    <div class="app-card-wrapper"><header class="app-bar">
-        <div class="app-bar-leading">
-            <a href="../index.html" class="icon-button"><i class="ph ph-arrow-left"></i></a>
-        </div>
-        <div class="app-bar-title">Sorteo Rápido</div>
-        <div class="app-bar-actions">
-            <button class="icon-button" id="theme-toggle" aria-label="Cambiar tema">
-                <i class="ph ph-moon" id="theme-icon"></i>
-            </button>
-        </div>
-    </header><div class="content">
-        <div class="tool-header">
-            <div class="icon-container">
-                <i class="ph ph-shuffle"></i>
-            </div>
-            <h1>Sorteo Rápido</h1>
-            <p>Deja que el azar decida por ti</p>
-        </div>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="warning">
+                <ion-buttons slot="start">
+                    <ion-button href="../index.html">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Sorteo Rápido</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button id="theme-toggle">
+                        <ion-icon name="moon" id="theme-icon"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
 
-        <div class="app-wrapper">
+        <ion-content class="ion-padding">
+            <div class="ion-text-center ion-padding-vertical">
+                <ion-icon name="shuffle" color="warning" style="font-size: 64px;"></ion-icon>
+                <h2>Sorteo Rápido</h2>
+                <p>Deja que el azar decida por ti</p>
+            </div>
+
             <!-- Zona del resultado -->
             <div class="result-container" id="result-container">
-                <div class="winner-label hidden" id="winner-label">¡Tenemos un ganador!</div>
+                <ion-text color="success" class="hidden" id="winner-label">
+                    <h3>¡Tenemos un ganador!</h3>
+                </ion-text>
                 <div class="result-display" id="result-display">
                     <span class="placeholder-text">Ingresa opciones y gira</span>
                 </div>
             </div>
 
-            <!-- Controles -->
-            <div class="input-group">
-                <div class="input-header">
-                    <label>Opciones (Una por línea)</label>
-                    <button id="clear-btn" class="icon-btn" title="Limpiar lista">
-                        <i class="ph ph-trash"></i>
-                    </button>
-                </div>
-                <textarea id="options-input" placeholder="Ejemplo:
+            <ion-card>
+                <ion-card-header>
+                    <ion-row class="ion-align-items-center">
+                        <ion-col>
+                            <ion-card-title>Opciones (Una por línea)</ion-card-title>
+                        </ion-col>
+                        <ion-col size="auto">
+                            <ion-button fill="clear" color="danger" id="clear-btn" title="Limpiar lista">
+                                <ion-icon name="trash" slot="icon-only"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-textarea id="options-input" fill="outline" rows="5" placeholder="Ejemplo:
 Pizza
 Hamburguesa
 Tacos
-Sushi" rows="5"></textarea>
-                <div class="stats">
-                    <span id="options-count">0 opciones ingresadas</span>
-                </div>
-            </div>
+Sushi"></ion-textarea>
+                    
+                    <div class="ion-text-center ion-margin-top">
+                        <ion-note id="options-count">0 opciones ingresadas</ion-note>
+                    </div>
 
-            <button id="spin-btn" class="action-btn primary">
-                <i class="ph ph-play"></i> Seleccionar al azar
-            </button>
-        </div>
-    </div></div>
+                    <ion-button expand="block" color="warning" id="spin-btn" class="ion-margin-top" disabled>
+                        <ion-icon name="play" slot="start"></ion-icon> Seleccionar al azar
+                    </ion-button>
+                </ion-card-content>
+            </ion-card>
 
-    
-    
-    
-    
+        </ion-content>
+    </ion-app>
 
     <!-- Librería para un efecto de confeti (opcional, muy vistoso) -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="app.js"></script>
-
-<script src="../main.js"></script></body></html>
+    <script src="../main.js"></script>
+</body>
+</html>

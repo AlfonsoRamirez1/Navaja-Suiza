@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Event Listeners ---
-    optionsInput.addEventListener('input', updateOptions);
+    optionsInput.addEventListener('ionInput', updateOptions);
 
     clearBtn.addEventListener('click', () => {
         optionsInput.value = '';
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resultDisplay.innerHTML = '<span class="placeholder-text">Ingresa opciones y gira</span>';
         resultDisplay.className = 'result-display';
         winnerLabel.classList.add('hidden');
-        optionsInput.focus();
+        optionsInput.setFocus();
     });
 
     spinBtn.addEventListener('click', () => {

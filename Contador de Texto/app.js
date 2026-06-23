@@ -39,13 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event Listeners
 
     // Actualizar en tiempo real mientras se escribe
-    textInput.addEventListener('input', updateCounts);
+    textInput.addEventListener('ionInput', updateCounts);
 
     // Botón para limpiar el área de texto
     clearBtn.addEventListener('click', () => {
         textInput.value = '';
         updateCounts(); // Actualizar contadores a cero
-        textInput.focus(); // Devolver el foco al textarea
+        textInput.setFocus(); // Devolver el foco al textarea
     });
 
     // Llamada inicial para que los contadores muestren 0 si no hay texto

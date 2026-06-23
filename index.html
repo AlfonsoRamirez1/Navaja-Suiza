@@ -1,104 +1,139 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es" class="ion-palette-light">
 <head>
-    <meta name="theme-color" content="#fdfdfd" id="theme-color-meta">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navaja Suiza | Herramientas Web</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Iconos Phosphor -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=1780078946190">
+    <!-- Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/palettes/dark.class.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <div class="container">
-        <header>
-            <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
-                <i class="ph ph-moon" id="theme-icon"></i>
-            </button>
-            <div class="icon-container">
-                <i class="ph ph-toolbox"></i>
-            </div>
-            <h1>Navaja Suiza</h1>
-            <p>Colección de herramientas web prácticas y minimalistas</p>
-        </header>
+    <ion-app>
+        <ion-content class="ion-padding">
+            <ion-fab slot="fixed" vertical="top" horizontal="end">
+                <ion-fab-button id="theme-toggle" color="light" size="small">
+                    <ion-icon name="moon" id="theme-icon"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
 
-        <div class="apps-grid">
-            <a href="Calculadora de Descuentos/index.html" class="app-card">
-                <div class="app-icon" style="--app-color: #f59e0b;"><i class="ph ph-tag"></i></div>
-                <div class="app-info">
-                    <h3>Calculadora de Descuentos</h3>
-                    <p>Calcula el precio final y tu ahorro</p>
-                </div>
-            </a>
-            <a href="Calculadora Propinas/index.html" class="app-card">
-                <div class="app-icon" style="--app-color: #10b981;"><i class="ph ph-currency-circle-dollar"></i></div>
-                <div class="app-info">
-                    <h3>Calculadora de Propinas</h3>
-                    <p>Divide la cuenta fácilmente entre amigos</p>
-                </div>
-            </a>
-            <a href="Compresor de Imagenes/index.html" class="app-card">
-                <div class="app-icon" style="--app-color: #3b82f6;"><i class="ph ph-image"></i></div>
-                <div class="app-info">
-                    <h3>Compresor de Imágenes</h3>
-                    <p>Reduce el tamaño de tus fotos</p>
-                </div>
-            </a>
-            <a href="Contador de Texto/index.html" class="app-card">
-                <div class="app-icon" style="--app-color: #8b5cf6;"><i class="ph ph-text-aa"></i></div>
-                <div class="app-info">
-                    <h3>Contador de Texto</h3>
-                    <p>Cuenta palabras, caracteres y párrafos</p>
-                </div>
-            </a>
-            <a href="Conversor de Unidades/index.html" class="app-card">
-                <div class="app-icon" style="--app-color: #ec4899;"><i class="ph ph-arrows-left-right"></i></div>
-                <div class="app-info">
-                    <h3>Conversor de Unidades</h3>
-                    <p>Convierte entre diferentes medidas</p>
-                </div>
-            </a>
-            <a href="Conversor Imagen a PDF/index.html" class="app-card">
-                <div class="app-icon" style="--app-color: #ef4444;"><i class="ph ph-file-pdf"></i></div>
-                <div class="app-info">
-                    <h3>Imagen a PDF</h3>
-                    <p>Convierte tus imágenes a formato PDF</p>
-                </div>
-            </a>
-            <a href="Editor Markdown/index.html" class="app-card">
-                <div class="app-icon" style="--app-color: #6366f1;"><i class="ph ph-markdown-logo"></i></div>
-                <div class="app-info">
-                    <h3>Editor Markdown</h3>
-                    <p>Escribe y previsualiza archivos markdown</p>
-                </div>
-            </a>
-            <a href="Eliminador de Fondo/index.html" class="app-card">
-                <div class="app-icon" style="--app-color: #14b8a6;"><i class="ph ph-scissors"></i></div>
-                <div class="app-info">
-                    <h3>Eliminador de Fondo</h3>
-                    <p>Quita el fondo de las imágenes mágicamente</p>
-                </div>
-            </a>
-            <a href="Generador de códigos QR/index.html" class="app-card">
-                <div class="app-icon" style="--app-color: #f97316;"><i class="ph ph-qr-code"></i></div>
-                <div class="app-info">
-                    <h3>Generador de códigos QR</h3>
-                    <p>Crea códigos QR personalizados al instante</p>
-                </div>
-            </a>
-            <a href="Ruleta/index.html" class="app-card">
-                <div class="app-icon" style="--app-color: #eab308;"><i class="ph ph-spinner"></i></div>
-                <div class="app-info">
-                    <h3>Ruleta de Decisiones</h3>
-                    <p>Gira la ruleta para decidir al azar</p>
-                </div>
-            </a>
-        </div>
-    </div>
+            <div class="main-title-section ion-text-center ion-padding-vertical" style="margin-top: 40px;">
+                <h1 style="font-size: 3.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px;">NAVAJA SUIZA</h1>
+                <p style="font-size: 1.15rem; font-weight: 500; line-height: 1.5; color: var(--ion-color-medium);">
+                    Herramientas en línea prácticas y minimalistas para resolver tus tareas cotidianas al instante.
+                </p>
+            </div>
+            
+            <ion-grid fixed="true">
+                <ion-row>
+                    <ion-col size="12" size-md="6" size-lg="4">
+                        <ion-card button="true" href="Calculadora de Descuentos/index.html">
+                            <ion-card-header>
+                                <ion-card-subtitle><ion-icon name="pricetag" style="color: #f59e0b;" size="large"></ion-icon></ion-card-subtitle>
+                                <ion-card-title>Calculadora de Descuentos</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>Calcula el precio final y tu ahorro</ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size="12" size-md="6" size-lg="4">
+                        <ion-card button="true" href="Calculadora Propinas/index.html">
+                            <ion-card-header>
+                                <ion-card-subtitle><ion-icon name="receipt" style="color: #10b981;" size="large"></ion-icon></ion-card-subtitle>
+                                <ion-card-title>Calculadora de Propinas</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>Divide la cuenta fácilmente entre amigos</ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size="12" size-md="6" size-lg="4">
+                        <ion-card button="true" href="Compresor de Imagenes/index.html">
+                            <ion-card-header>
+                                <ion-card-subtitle><ion-icon name="contract" style="color: #14b8a6;" size="large"></ion-icon></ion-card-subtitle>
+                                <ion-card-title>Compresor de Imágenes</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>Reduce el tamaño de tus fotos</ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size="12" size-md="6" size-lg="4">
+                        <ion-card button="true" href="Contador de Texto/index.html">
+                            <ion-card-header>
+                                <ion-card-subtitle><ion-icon name="text" style="color: #eab308;" size="large"></ion-icon></ion-card-subtitle>
+                                <ion-card-title>Contador de Texto</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>Cuenta palabras, caracteres y párrafos</ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size="12" size-md="6" size-lg="4">
+                        <ion-card button="true" href="Conversor de Unidades/index.html">
+                            <ion-card-header>
+                                <ion-card-subtitle><ion-icon name="swap-horizontal" style="color: #3b82f6;" size="large"></ion-icon></ion-card-subtitle>
+                                <ion-card-title>Conversor de Unidades</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>Convierte entre diferentes medidas</ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size="12" size-md="6" size-lg="4">
+                        <ion-card button="true" href="Conversor Imagen a PDF/index.html">
+                            <ion-card-header>
+                                <ion-card-subtitle><ion-icon name="images" style="color: #ef4444;" size="large"></ion-icon></ion-card-subtitle>
+                                <ion-card-title>Imagen a PDF</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>Convierte tus imágenes a formato PDF</ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size="12" size-md="6" size-lg="4">
+                        <ion-card button="true" href="Editor Markdown/index.html">
+                            <ion-card-header>
+                                <ion-card-subtitle><ion-icon name="document-text" style="color: #8b5cf6;" size="large"></ion-icon></ion-card-subtitle>
+                                <ion-card-title>Editor Markdown</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>Escribe y previsualiza archivos markdown</ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size="12" size-md="6" size-lg="4">
+                        <ion-card button="true" href="Eliminador de Fondo/index.html">
+                            <ion-card-header>
+                                <ion-card-subtitle><ion-icon name="color-wand" style="color: #ec4899;" size="large"></ion-icon></ion-card-subtitle>
+                                <ion-card-title>Eliminador de Fondo</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>Quita el fondo de las imágenes mágicamente</ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size="12" size-md="6" size-lg="4">
+                        <ion-card button="true" href="Generador de códigos QR/index.html">
+                            <ion-card-header>
+                                <ion-card-subtitle><ion-icon name="qr-code" style="color: #f59e0b;" size="large"></ion-icon></ion-card-subtitle>
+                                <ion-card-title>Generador de códigos QR</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>Crea códigos QR personalizados al instante</ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size="12" size-md="6" size-lg="4">
+                        <ion-card button="true" href="Ruleta/index.html">
+                            <ion-card-header>
+                                <ion-card-subtitle><ion-icon name="refresh-circle" style="color: #a855f7;" size="large"></ion-icon></ion-card-subtitle>
+                                <ion-card-title>Ruleta de Decisiones</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>Gira la ruleta para decidir al azar</ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-content>
+    </ion-app>
     <script src="main.js"></script>
 </body>
 </html>

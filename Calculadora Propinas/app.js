@@ -48,9 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Actualizar estado activo de los botones preset
         presetBtns.forEach(btn => {
             if (parseInt(btn.dataset.tip) === tipPercent) {
-                btn.classList.add('active');
+                btn.fill = 'solid';
+                btn.color = 'success';
             } else {
-                btn.classList.remove('active');
+                btn.fill = 'outline';
+                btn.color = 'medium';
             }
         });
     }
@@ -58,13 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event Listeners
 
     // Entrada del total de la cuenta
-    billTotalInput.addEventListener('input', (e) => {
+    billTotalInput.addEventListener('ionInput', (e) => {
         bill = parseFloat(e.target.value) || 0;
         calculate();
     });
 
     // Rango de porcentaje de propina
-    tipPercentageRange.addEventListener('input', (e) => {
+    tipPercentageRange.addEventListener('ionInput', (e) => {
         tipPercent = parseInt(e.target.value);
         calculate();
     });
@@ -72,14 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Botones preestablecidos de propina
     presetBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            tipPercent = parseInt(e.target.dataset.tip);
+            tipPercent = parseInt(e.currentTarget.dataset.tip);
             tipPercentageRange.value = tipPercent; // Sincronizar el slider
             calculate();
         });
     });
 
     // Entrada directa de número de personas
-    peopleCountInput.addEventListener('input', (e) => {
+    peopleCountInput.addEventListener('ionInput', (e) => {
         people = parseInt(e.target.value) || 1;
         calculate();
     });

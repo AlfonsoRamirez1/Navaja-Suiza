@@ -1,86 +1,98 @@
-<!DOCTYPE html><html lang="es" data-theme="light"><head>
-    <meta name="theme-color" content="#fdfdfd" id="theme-color-meta">
+<!DOCTYPE html>
+<html lang="es" class="ion-palette-light">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Descuentos | Navaja Suiza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <!-- Iconos Phosphor -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=1780083022400">
+    <!-- Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/palettes/dark.class.css" />
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --ion-color-warning: #f59e0b;
+            --ion-color-warning-rgb: 245,158,11;
+            --ion-color-warning-contrast: #ffffff;
+            --ion-color-warning-contrast-rgb: 255,255,255;
+            --ion-color-warning-shade: #d88b0a;
+            --ion-color-warning-tint: #f6a823;
+        }
+    </style>
 </head>
 <body>
-    <div class="app-card-wrapper"><header class="app-bar">
-        <div class="app-bar-leading">
-            <a href="../index.html" class="icon-button"><i class="ph ph-arrow-left"></i></a>
-        </div>
-        <div class="app-bar-title">Descuentos</div>
-        <div class="app-bar-actions">
-            <button class="icon-button" id="theme-toggle" aria-label="Cambiar tema">
-                <i class="ph ph-moon" id="theme-icon"></i>
-            </button>
-        </div>
-    </header><div class="content">
-        <div class="tool-header">
-            <div class="icon-container">
-                <i class="ph ph-tag"></i>
-            </div>
-            <h1>Descuentos</h1>
-            <p>Calcula el precio final y tu ahorro total</p>
-        </div>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="warning">
+                <ion-buttons slot="start">
+                    <ion-button href="../index.html">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Descuentos</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button id="theme-toggle">
+                        <ion-icon name="moon" id="theme-icon"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
 
-        <div class="app-wrapper">
-            <!-- Precio Original -->
-            <div class="input-group">
-                <div class="input-header">
-                    <label>Precio Original</label>
-                </div>
-                <div class="input-row has-icon">
-                    <i class="ph ph-currency-dollar currency-icon"></i>
-                    <input type="number" id="originalPrice" placeholder="0.00" min="0" step="0.01">
-                </div>
+        <ion-content class="ion-padding">
+            <div class="ion-text-center ion-padding-vertical">
+                <ion-icon name="pricetag" color="warning" style="font-size: 64px;"></ion-icon>
+                <h2>Descuentos</h2>
+                <p>Calcula el precio final y tu ahorro total</p>
             </div>
 
-            <!-- Descuentos Dinámicos -->
-            <div class="discounts-section">
-                <div class="discounts-header">
-                    <label>Descuentos a aplicar (%)</label>
-                </div>
-                <div id="discounts-container" class="discounts-container">
-                    <!-- Los inputs de descuento irán aquí -->
-                </div>
-                <button id="add-discount-btn" class="secondary-btn add-btn">
-                    <i class="ph ph-plus"></i> Añadir descuento extra
-                </button>
-            </div>
+            <ion-card>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-icon name="cash-outline" slot="start"></ion-icon>
+                        <ion-input label="Precio Original" label-placement="floating" type="number" id="originalPrice" placeholder="0.00" min="0" step="0.01"></ion-input>
+                    </ion-item>
 
-            <!-- Resultados -->
-            <div class="results-card">
-                <div class="result-row">
-                    <div class="result-label">
-                        <h4>Ahorro Total</h4>
-                        <p id="effective-discount">0% de descuento efectivo</p>
+                    <div class="ion-padding-top">
+                        <ion-label color="medium" class="ion-padding-horizontal">Descuentos a aplicar (%)</ion-label>
+                        <ion-list id="discounts-container">
+                            <!-- Los inputs de descuento irán aquí -->
+                        </ion-list>
                     </div>
-                    <div class="result-value savings" id="totalSaved">$0.00</div>
-                </div>
 
-                <div class="result-row total">
-                    <div class="result-label">
-                        <h4>Precio Final</h4>
-                        <p>a pagar</p>
-                    </div>
-                    <div class="result-value" id="finalPrice">$0.00</div>
-                </div>
-            </div>
-        </div>
-    </div></div>
+                    <ion-button fill="clear" id="add-discount-btn" expand="block">
+                        <ion-icon name="add" slot="start"></ion-icon> Añadir descuento extra
+                    </ion-button>
+                </ion-card-content>
+            </ion-card>
 
-    
-    
-    
-    
+            <ion-card color="light">
+                <ion-card-content>
+                    <ion-row class="ion-align-items-center ion-margin-bottom">
+                        <ion-col>
+                            <h3 class="ion-no-margin">Ahorro Total</h3>
+                            <p class="ion-no-margin" style="font-size: 0.9em; color: var(--ion-color-medium);" id="effective-discount">0% de descuento efectivo</p>
+                        </ion-col>
+                        <ion-col size="auto" class="ion-text-end">
+                            <strong style="color: var(--ion-color-success); font-size: 1.2rem;" id="totalSaved">$0.00</strong>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row class="ion-align-items-center">
+                        <ion-col>
+                            <h2 class="ion-no-margin">Precio Final</h2>
+                            <p class="ion-no-margin" style="font-size: 0.9em; color: var(--ion-color-medium);">a pagar</p>
+                        </ion-col>
+                        <ion-col size="auto" class="ion-text-end">
+                            <strong style="font-size: 1.5rem;" id="finalPrice">$0.00</strong>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-content>
+    </ion-app>
 
     <script src="app.js"></script>
-
-<script src="../main.js"></script></body></html>
+    <script src="../main.js"></script>
+</body>
+</html>

@@ -1,116 +1,146 @@
-<!DOCTYPE html><html lang="es" data-theme="light"><head>
-    <meta name="theme-color" content="#fdfdfd" id="theme-color-meta">
+<!DOCTYPE html>
+<html lang="es" class="ion-palette-light">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor Markdown | Navaja Suiza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <!-- Iconos Phosphor -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=1780083022400">
+    <!-- Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/palettes/dark.class.css" />
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --ion-color-primary: #8b5cf6;
+            --ion-color-primary-rgb: 139,92,246;
+            --ion-color-primary-contrast: #ffffff;
+            --ion-color-primary-contrast-rgb: 255,255,255;
+            --ion-color-primary-shade: #7a51d8;
+            --ion-color-primary-tint: #976cf7;
+        }
+    </style>
+    <style>
+        .editor-split-view {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .editor-split-view {
+                flex-direction: row;
+            }
+            .editor-panel {
+                flex: 1;
+            }
+        }
+        .markdown-body {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 300px;
+        }
+        html.ion-palette-dark .markdown-body {
+            background-color: #2b2930;
+            color: #e6e1e5;
+        }
+    </style>
 </head>
 <body>
-    <div class="app-card-wrapper"><header class="app-bar">
-        <div class="app-bar-leading">
-            <a href="../index.html" class="icon-button"><i class="ph ph-arrow-left"></i></a>
-        </div>
-        <div class="app-bar-title">Editor Markdown</div>
-        <div class="app-bar-actions">
-            <button class="icon-button" id="theme-toggle" aria-label="Cambiar tema">
-                <i class="ph ph-moon" id="theme-icon"></i>
-            </button>
-        </div>
-    </header><div class="content">
-        <div class="tool-header">
-            <div class="icon-container">
-                <i class="ph ph-markdown-logo"></i>
-            </div>
-            <h1>Editor Markdown</h1>
-            <p>Escribe fácil, genera documentos increíbles</p>
-        </div>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="primary">
+                <ion-buttons slot="start">
+                    <ion-button href="../index.html">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Editor Markdown</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button id="theme-toggle">
+                        <ion-icon name="moon" id="theme-icon"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
 
-        <div class="app-wrapper">
+        <ion-content class="ion-padding">
+            <div class="ion-text-center ion-padding-vertical">
+                <ion-icon name="document-text" color="primary" style="font-size: 64px;"></ion-icon>
+                <h2>Editor Markdown</h2>
+                <p>Escribe fácil, genera documentos increíbles</p>
+            </div>
+
             <!-- Barra de herramientas superior -->
-            <div class="top-toolbar">
-                <div class="format-toolbar">
-                    <button class="format-btn" data-format="bold" title="Negrita (Ctrl+B)">
-                        <i class="ph ph-text-b"></i>
-                    </button>
-                    <button class="format-btn" data-format="italic" title="Cursiva (Ctrl+I)">
-                        <i class="ph ph-text-italic"></i>
-                    </button>
-                    <div class="divider"></div>
-                    <button class="format-btn" data-format="h1" title="Título Principal">
-                        <i class="ph ph-text-h-one"></i>
-                    </button>
-                    <button class="format-btn" data-format="h2" title="Subtítulo">
-                        <i class="ph ph-text-h-two"></i>
-                    </button>
-                    <div class="divider"></div>
-                    <button class="format-btn" data-format="list-ul" title="Lista con viñetas">
-                        <i class="ph ph-list-bullets"></i>
-                    </button>
-                    <button class="format-btn" data-format="list-ol" title="Lista numerada">
-                        <i class="ph ph-list-numbers"></i>
-                    </button>
-                    <div class="divider"></div>
-                    <button class="format-btn" data-format="quote" title="Cita">
-                        <i class="ph ph-quotes"></i>
-                    </button>
-                    <button class="format-btn" data-format="link" title="Enlace">
-                        <i class="ph ph-link"></i>
-                    </button>
-                </div>
+            <ion-toolbar class="ion-margin-bottom">
+                <ion-buttons slot="start">
+                    <ion-button class="format-btn" data-format="bold" title="Negrita (Ctrl+B)"><ion-icon name="text" style="font-weight: bold;"></ion-icon></ion-button>
+                    <ion-button class="format-btn" data-format="italic" title="Cursiva (Ctrl+I)"><ion-icon name="text" style="font-style: italic;"></ion-icon></ion-button>
+                    <ion-button class="format-btn" data-format="h1" title="Título Principal"><strong>H1</strong></ion-button>
+                    <ion-button class="format-btn" data-format="h2" title="Subtítulo"><strong>H2</strong></ion-button>
+                    <ion-button class="format-btn" data-format="list-ul" title="Lista con viñetas"><ion-icon name="list"></ion-icon></ion-button>
+                    <ion-button class="format-btn" data-format="list-ol" title="Lista numerada"><ion-icon name="list-outline"></ion-icon></ion-button>
+                    <ion-button class="format-btn" data-format="quote" title="Cita"><ion-icon name="chatbox-ellipses-outline"></ion-icon></ion-button>
+                    <ion-button class="format-btn" data-format="link" title="Enlace"><ion-icon name="link"></ion-icon></ion-button>
+                </ion-buttons>
 
-                <div class="action-toolbar">
-                    <button id="export-html-btn" class="toolbar-btn">
-                        <i class="ph ph-file-html"></i> Guardar HTML
-                    </button>
-                    <button id="export-pdf-btn" class="toolbar-btn primary">
-                        <i class="ph ph-file-pdf"></i> Generar PDF
-                    </button>
-                </div>
-            </div>
+                <ion-buttons slot="end">
+                    <ion-button color="tertiary" id="export-html-btn">
+                        <ion-icon name="logo-html5" slot="start"></ion-icon> HTML
+                    </ion-button>
+                    <ion-button color="danger" id="export-pdf-btn">
+                        <ion-icon name="document" slot="start"></ion-icon> PDF
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
 
             <!-- Contenedor del Editor (Pantalla dividida) -->
             <div class="editor-split-view">
                 <!-- Panel de Escritura -->
-                <div class="editor-panel">
-                    <div class="panel-header">
-                        <label><i class="ph ph-pencil-simple"></i> Markdown</label>
-                        <button id="clear-btn" class="icon-btn" title="Limpiar"><i class="ph ph-trash"></i></button>
-                    </div>
-                    <textarea id="markdown-input" placeholder="# Título Principal
+                <ion-card class="editor-panel ion-no-margin">
+                    <ion-card-header>
+                        <ion-row class="ion-align-items-center">
+                            <ion-col>
+                                <ion-card-title>Markdown</ion-card-title>
+                            </ion-col>
+                            <ion-col size="auto">
+                                <ion-button fill="clear" color="danger" id="clear-btn" title="Limpiar">
+                                    <ion-icon name="trash" slot="icon-only"></ion-icon>
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-textarea id="markdown-input" rows="15" fill="outline" placeholder="# Título Principal
 
 Escribe tu texto aquí...
 
 Puedes usar **negritas**, *cursivas* o listas:
 - Elemento 1
-- Elemento 2"></textarea>
-                </div>
+- Elemento 2"></ion-textarea>
+                    </ion-card-content>
+                </ion-card>
 
                 <!-- Panel de Vista Previa -->
-                <div class="editor-panel">
-                    <div class="panel-header">
-                        <label><i class="ph ph-eye"></i> Vista Previa</label>
-                    </div>
-                    <!-- Se le pone fondo blanco al preview para que al exportar a PDF se vea como un documento real -->
-                    <div id="preview-output" class="markdown-body"></div>
-                </div>
+                <ion-card class="editor-panel ion-no-margin">
+                    <ion-card-header>
+                        <ion-card-title>Vista Previa</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <!-- Se le pone fondo blanco al preview para que al exportar a PDF se vea como un documento real -->
+                        <div id="preview-output" class="markdown-body"></div>
+                    </ion-card-content>
+                </ion-card>
             </div>
-        </div>
-    </div></div>
-
-    
-    
-    
-    
+        </ion-content>
+    </ion-app>
 
     <!-- Librería Marked.js para convertir Markdown a HTML -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- Librería html2pdf.js para exportar de HTML a PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="app.js"></script>
-
-<script src="../main.js"></script></body></html>
+    <script src="../main.js"></script>
+</body>
+</html>

@@ -1,100 +1,133 @@
-<!DOCTYPE html><html lang="es" data-theme="light"><head>
-    <meta name="theme-color" content="#fdfdfd" id="theme-color-meta">
+<!DOCTYPE html>
+<html lang="es" class="ion-palette-light">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compresor de Imágenes | Navaja Suiza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <!-- Iconos Phosphor -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=1780083022400">
+    <!-- Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/palettes/dark.class.css" />
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --ion-color-primary: #14b8a6;
+            --ion-color-primary-rgb: 20,184,166;
+            --ion-color-primary-contrast: #ffffff;
+            --ion-color-primary-contrast-rgb: 255,255,255;
+            --ion-color-primary-shade: #12a292;
+            --ion-color-primary-tint: #2cbfae;
+        }
+    </style>
+    <style>
+        .upload-area {
+            border: 2px dashed var(--ion-color-medium);
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area.dragover {
+            border-color: var(--ion-color-primary);
+            background: var(--ion-color-light);
+        }
+        .hidden { display: none !important; }
+        .image-wrapper img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
-    <div class="app-card-wrapper"><header class="app-bar">
-        <div class="app-bar-leading">
-            <a href="../index.html" class="icon-button"><i class="ph ph-arrow-left"></i></a>
-        </div>
-        <div class="app-bar-title">Compresor de Imágenes</div>
-        <div class="app-bar-actions">
-            <button class="icon-button" id="theme-toggle" aria-label="Cambiar tema">
-                <i class="ph ph-moon" id="theme-icon"></i>
-            </button>
-        </div>
-    </header><div class="content">
-        <div class="tool-header">
-            <div class="icon-container">
-                <i class="ph ph-arrows-in"></i>
-            </div>
-            <h1>Compresor de Imágenes</h1>
-            <p>Reduce el peso de tus fotos sin perder tamaño</p>
-        </div>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="primary">
+                <ion-buttons slot="start">
+                    <ion-button href="../index.html">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Compresor</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button id="theme-toggle">
+                        <ion-icon name="moon" id="theme-icon"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
 
-        <div class="app-wrapper">
+        <ion-content class="ion-padding">
+            <div class="ion-text-center ion-padding-vertical">
+                <ion-icon name="contract" color="primary" style="font-size: 64px;"></ion-icon>
+                <h2>Compresor de Imágenes</h2>
+                <p>Reduce el peso de tus fotos sin perder tamaño</p>
+            </div>
+
             <!-- Zona de subida -->
             <div class="upload-area" id="upload-area">
-                <i class="ph ph-upload-simple"></i>
+                <ion-icon name="cloud-upload-outline" style="font-size: 48px; color: var(--ion-color-medium);"></ion-icon>
                 <h3>Sube tu imagen</h3>
                 <p>Haz clic o arrastra un JPG/PNG aquí</p>
-                <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg, image/webp" class="hidden-input">
+                <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg, image/webp" class="hidden">
             </div>
 
             <!-- Editor de Compresión -->
-            <div class="editor-container hidden" id="editor-container">
+            <div id="editor-container" class="hidden">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="6" class="ion-text-center">
+                            <ion-label color="medium">Original</ion-label>
+                            <div class="image-wrapper ion-margin-top">
+                                <img id="original-img" src="" alt="Original">
+                            </div>
+                            <ion-badge color="medium" id="original-size" class="ion-margin-top">0 KB</ion-badge>
+                        </ion-col>
 
-                <div class="preview-split">
-                    <div class="preview-box">
-                        <div class="preview-header">Original</div>
-                        <div class="image-wrapper">
-                            <img id="original-img" src="" alt="Original">
+                        <ion-col size="6" class="ion-text-center">
+                            <ion-label color="success">Comprimida</ion-label>
+                            <div class="image-wrapper ion-margin-top">
+                                <img id="compressed-img" src="" alt="Comprimida">
+                            </div>
+                            <ion-badge color="success" id="compressed-size" class="ion-margin-top">0 KB</ion-badge>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-card class="ion-margin-top">
+                    <ion-card-content>
+                        <ion-item lines="none">
+                            <ion-label>Calidad de imagen</ion-label>
+                            <ion-note slot="end" id="quality-display" color="primary">80%</ion-note>
+                        </ion-item>
+                        <ion-range id="quality-slider" min="1" max="100" value="80" step="1" color="primary"></ion-range>
+                        <p class="ion-text-center" style="font-size: 0.85em; color: var(--ion-color-medium);">Menor calidad = menor peso (pero puede verse borrosa).</p>
+
+                        <div class="ion-text-center ion-margin-top">
+                            <ion-label>Reducción: <strong id="savings-percentage">0%</strong></ion-label>
                         </div>
-                        <div class="size-badge" id="original-size">0 KB</div>
-                    </div>
 
-                    <div class="preview-box compressed">
-                        <div class="preview-header">Comprimida</div>
-                        <div class="image-wrapper">
-                            <img id="compressed-img" src="" alt="Comprimida">
-                        </div>
-                        <div class="size-badge success" id="compressed-size">0 KB</div>
-                    </div>
-                </div>
-
-                <div class="controls">
-                    <div class="control-group">
-                        <div class="control-header">
-                            <label>Calidad de imagen</label>
-                            <span id="quality-display" class="value-display">80%</span>
-                        </div>
-                        <div class="range-container">
-                            <input type="range" id="quality-slider" min="1" max="100" value="80" step="1">
-                        </div>
-                        <p class="helper-text">Menor calidad = menor peso (pero puede verse borrosa).</p>
-                    </div>
-
-                    <!-- Información de reducción -->
-                    <div class="savings-info" id="savings-info">
-                        Reducción: <span id="savings-percentage">0%</span>
-                    </div>
-
-                    <div class="action-buttons">
-                        <button id="reset-btn" class="secondary-btn">
-                            <i class="ph ph-arrow-counter-clockwise"></i> Cambiar foto
-                        </button>
-                        <button id="download-btn" class="action-btn primary">
-                            <i class="ph ph-download-simple"></i> Descargar JPG
-                        </button>
-                    </div>
-                </div>
+                        <ion-row class="ion-margin-top">
+                            <ion-col>
+                                <ion-button fill="outline" expand="block" id="reset-btn" color="medium">
+                                    <ion-icon name="refresh" slot="start"></ion-icon> Cambiar
+                                </ion-button>
+                            </ion-col>
+                            <ion-col>
+                                <ion-button expand="block" id="download-btn" color="primary">
+                                    <ion-icon name="download" slot="start"></ion-icon> Descargar
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-card>
             </div>
-        </div>
-    </div></div>
-
-    
-    
-    
-    
+        </ion-content>
+    </ion-app>
 
     <script src="app.js"></script>
-
-<script src="../main.js"></script></body></html>
+    <script src="../main.js"></script>
+</body>
+</html>

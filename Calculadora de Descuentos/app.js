@@ -59,18 +59,16 @@ document.addEventListener('DOMContentLoaded', () => {
         discountsContainer.innerHTML = '';
         
         discounts.forEach((discount, index) => {
-            const item = document.createElement('div');
-            item.className = 'discount-item';
+            const item = document.createElement('ion-item');
             
             item.innerHTML = `
-                <div class="input-row has-percent-icon">
-                    <input type="number" placeholder="0" min="0" max="100" value="${discount.value}" data-id="${discount.id}">
-                    <i class="ph ph-percent percent-icon"></i>
-                </div>
+                <ion-icon name="pricetag-outline" slot="start"></ion-icon>
+                <ion-input type="number" placeholder="0" min="0" max="100" value="${discount.value}" data-id="${discount.id}"></ion-input>
+                <ion-icon name="percent" slot="end" color="medium"></ion-icon>
                 ${discounts.length > 1 ? `
-                <button class="remove-discount-btn" data-id="${discount.id}" title="Eliminar descuento">
-                    <i class="ph ph-x"></i>
-                </button>
+                <ion-button fill="clear" color="danger" slot="end" class="remove-discount-btn" data-id="${discount.id}">
+                    <ion-icon name="close" slot="icon-only"></ion-icon>
+                </ion-button>
                 ` : ''}
             `;
             
@@ -78,9 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Añadir listeners a los nuevos elementos
-        const inputs = discountsContainer.querySelectorAll('input');
+        const inputs = discountsContainer.querySelectorAll('ion-input');
         inputs.forEach(input => {
-            input.addEventListener('input', (e) => {
+            input.addEventListener('ionInput', (e) => {
                 const id = parseInt(e.target.dataset.id);
                 const obj = discounts.find(d => d.id === id);
                 if (obj) {
@@ -102,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Eventos
-    originalPriceInput.addEventListener('input', () => {
+    originalPriceInput.addEventListener('ionInput', () => {
         calculate();
     });
 
@@ -110,9 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
         discounts.push({ id: Date.now(), value: '' });
         renderDiscounts();
         // Focus en el nuevo input
-        const inputs = discountsContainer.querySelectorAll('input');
+        const inputs = discountsContainer.querySelectorAll('ion-input');
         if (inputs.length > 0) {
-            inputs[inputs.length - 1].focus();
+            inputs[inputs.length - 1].setFocus();
         }
     });
 });

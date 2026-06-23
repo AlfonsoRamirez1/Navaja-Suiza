@@ -4,7 +4,7 @@
     --bg-card: #1e293b;
     --bg-card-hover: #334155;
 
-    --primary-color: #a855f7; /* Purple/Neon */
+    --primary-color: #eab308; /* Purple/Neon */
     --primary-glow: rgba(168, 85, 247, 0.5);
     --secondary-color: #9333ea;
     --secondary-glow: rgba(147, 51, 234, 0.4);
@@ -393,13 +393,13 @@ textarea::-webkit-scrollbar-thumb {
         background-color: var(--bg-dark);
     }
     .app-card-wrapper {
-        margin: 0 !important;
-        max-width: 100% !important;
-        height: 100dvh !important;
-        max-height: 100dvh !important;
-        border-radius: 0 !important;
+        
+        
+        
+        max-
+        
         box-shadow: none !important;
-        border: none !important;
+        
     }
     .content {
         padding: 0 20px 25px 20px !important;
@@ -441,8 +441,67 @@ textarea::-webkit-scrollbar-thumb {
         background-color: #ffffff !important;
     }
     .app-card-wrapper {
-        border: none !important;
+        
         box-shadow: none !important;
-        border-radius: 0 !important;
+        
     }
+}
+
+
+
+
+/* OVERRIDES RESPONSIVE Y SCROLL GLOBAL */
+body {
+    overflow-y: auto !important;
+    align-items: flex-start !important;
+}
+
+.app-card-wrapper {
+    border-radius: 32px !important;
+    margin: auto !important;
+    height: auto !important;
+    min-height: min-content !important;
+    width: 95% !important;
+    max-width: 800px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    flex-direction: column !important;
+}
+
+.content {
+    overflow-y: visible !important;
+    height: auto !important;
+}
+
+
+/* ICON OVERRIDE */
+.icon-container {
+    background: var(--primary-color) !important;
+    color: white !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3) !important;
+}
+
+/* HEADER OVERRIDE */
+body {
+    justify-content: flex-start !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    align-items: center !important;
+}
+
+.app-bar {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    background-color: var(--bg-dark) !important;
+    border-bottom: none !important;
+}
+
+/* PADDING FIX */
+.content {
+    padding-top: 40px !important;
 }

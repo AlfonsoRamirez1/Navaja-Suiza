@@ -1,111 +1,134 @@
-<!DOCTYPE html><html lang="es" data-theme="light"><head>
-    <meta name="theme-color" content="#fdfdfd" id="theme-color-meta">
+<!DOCTYPE html>
+<html lang="es" class="ion-palette-light">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Propinas | Navaja Suiza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <!-- Iconos Phosphor -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=1780083022400">
+    <!-- Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/palettes/dark.class.css" />
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --ion-color-success: #10b981;
+            --ion-color-success-rgb: 16,185,129;
+            --ion-color-success-contrast: #ffffff;
+            --ion-color-success-contrast-rgb: 255,255,255;
+            --ion-color-success-shade: #0ea372;
+            --ion-color-success-tint: #28c08e;
+        }
+    </style>
 </head>
 <body>
-    <div class="app-card-wrapper"><header class="app-bar">
-        <div class="app-bar-leading">
-            <a href="../index.html" class="icon-button"><i class="ph ph-arrow-left"></i></a>
-        </div>
-        <div class="app-bar-title">Propinas</div>
-        <div class="app-bar-actions">
-            <button class="icon-button" id="theme-toggle" aria-label="Cambiar tema">
-                <i class="ph ph-moon" id="theme-icon"></i>
-            </button>
-        </div>
-    </header><div class="content">
-        <div class="tool-header">
-            <div class="icon-container">
-                <i class="ph ph-receipt"></i>
-            </div>
-            <h1>Propinas</h1>
-            <p>Divide la cuenta rápido</p>
-        </div>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="success">
+                <ion-buttons slot="start">
+                    <ion-button href="../index.html">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Propinas</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button id="theme-toggle">
+                        <ion-icon name="moon" id="theme-icon"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
 
-        <div class="calculator-wrapper">
-            <!-- Total de la cuenta -->
-            <div class="input-group">
-                <div class="input-header">
-                    <label>Total de la cuenta</label>
-                </div>
-                <div class="input-row has-icon">
-                    <i class="ph ph-currency-dollar currency-icon"></i>
-                    <input type="number" id="billTotal" placeholder="0.00" min="0" step="0.01">
-                </div>
+        <ion-content class="ion-padding">
+            <div class="ion-text-center ion-padding-vertical">
+                <ion-icon name="receipt" color="success" style="font-size: 64px;"></ion-icon>
+                <h2>Propinas</h2>
+                <p>Divide la cuenta rápido</p>
             </div>
 
-            <!-- Porcentaje de propina -->
-            <div class="input-group">
-                <div class="input-header">
-                    <label>Propina (%)</label>
-                    <span id="tipPercentageDisplay" class="value-display">15%</span>
-                </div>
-                <div class="range-container">
-                    <input type="range" id="tipPercentage" min="0" max="30" value="15" step="1">
-                </div>
-                <div class="tip-presets">
-                    <button class="preset-btn" data-tip="0">0%</button>
-                    <button class="preset-btn" data-tip="10">10%</button>
-                    <button class="preset-btn active" data-tip="15">15%</button>
-                    <button class="preset-btn" data-tip="20">20%</button>
-                </div>
-            </div>
+            <ion-card>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-icon name="cash-outline" slot="start"></ion-icon>
+                        <ion-input label="Total de la cuenta" label-placement="floating" type="number" id="billTotal" placeholder="0.00" min="0" step="0.01"></ion-input>
+                    </ion-item>
 
-            <!-- Número de personas -->
-            <div class="input-group">
-                <div class="input-header">
-                    <label>Personas</label>
-                    <span id="peopleCountDisplay" class="value-display">1</span>
-                </div>
-                <div class="people-counter">
-                    <button id="btnMinus" class="counter-btn"><i class="ph ph-minus"></i></button>
-                    <input type="number" id="peopleCount" value="1" min="1" max="100">
-                    <button id="btnPlus" class="counter-btn"><i class="ph ph-plus"></i></button>
-                </div>
-            </div>
-
-            <!-- Resultados -->
-            <div class="results-card">
-                <div class="result-row">
-                    <div class="result-label">
-                        <h4>Cuenta</h4>
-                        <p>por persona (sin propina)</p>
+                    <div class="ion-padding-top">
+                        <ion-item lines="none">
+                            <ion-label>Propina (%)</ion-label>
+                            <ion-note slot="end" id="tipPercentageDisplay" color="primary">15%</ion-note>
+                        </ion-item>
+                        <ion-range id="tipPercentage" min="0" max="30" step="1" value="15" color="success"></ion-range>
+                        
+                        <ion-row class="ion-text-center tip-presets">
+                            <ion-col><ion-button fill="outline" color="medium" class="preset-btn" data-tip="0" expand="block">0%</ion-button></ion-col>
+                            <ion-col><ion-button fill="outline" color="medium" class="preset-btn" data-tip="10" expand="block">10%</ion-button></ion-col>
+                            <ion-col><ion-button fill="solid" color="success" class="preset-btn active" data-tip="15" expand="block">15%</ion-button></ion-col>
+                            <ion-col><ion-button fill="outline" color="medium" class="preset-btn" data-tip="20" expand="block">20%</ion-button></ion-col>
+                        </ion-row>
                     </div>
-                    <div class="result-value" id="basePerPerson">$0.00</div>
-                </div>
 
-                <div class="result-row">
-                    <div class="result-label">
-                        <h4>Propina</h4>
-                        <p>por persona</p>
+                    <div class="ion-padding-top ion-margin-top">
+                        <ion-item lines="none">
+                            <ion-label>Personas</ion-label>
+                            <ion-note slot="end" id="peopleCountDisplay" color="primary">1</ion-note>
+                        </ion-item>
+                        <ion-row class="ion-align-items-center ion-justify-content-center">
+                            <ion-col size="auto">
+                                <ion-button fill="outline" color="medium" id="btnMinus">
+                                    <ion-icon name="remove" slot="icon-only"></ion-icon>
+                                </ion-button>
+                            </ion-col>
+                            <ion-col size="4">
+                                <ion-input type="number" id="peopleCount" value="1" min="1" max="100" class="ion-text-center"></ion-input>
+                            </ion-col>
+                            <ion-col size="auto">
+                                <ion-button fill="outline" color="medium" id="btnPlus">
+                                    <ion-icon name="add" slot="icon-only"></ion-icon>
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
                     </div>
-                    <div class="result-value" id="tipPerPerson">$0.00</div>
-                </div>
+                </ion-card-content>
+            </ion-card>
 
-                <div class="result-row total">
-                    <div class="result-label">
-                        <h4>Total final</h4>
-                        <p>por persona</p>
-                    </div>
-                    <div class="result-value" id="totalPerPerson">$0.00</div>
-                </div>
-            </div>
-        </div>
-    </div></div>
+            <ion-card color="light">
+                <ion-card-content>
+                    <ion-row class="ion-align-items-center ion-margin-bottom">
+                        <ion-col>
+                            <h3 class="ion-no-margin">Cuenta</h3>
+                            <p class="ion-no-margin" style="font-size: 0.9em; color: var(--ion-color-medium);">por persona (sin propina)</p>
+                        </ion-col>
+                        <ion-col size="auto" class="ion-text-end">
+                            <strong style="font-size: 1.2rem;" id="basePerPerson">$0.00</strong>
+                        </ion-col>
+                    </ion-row>
 
-    
-    
-    
-    
+                    <ion-row class="ion-align-items-center ion-margin-bottom">
+                        <ion-col>
+                            <h3 class="ion-no-margin">Propina</h3>
+                            <p class="ion-no-margin" style="font-size: 0.9em; color: var(--ion-color-medium);">por persona</p>
+                        </ion-col>
+                        <ion-col size="auto" class="ion-text-end">
+                            <strong style="color: var(--ion-color-success); font-size: 1.2rem;" id="tipPerPerson">$0.00</strong>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row class="ion-align-items-center">
+                        <ion-col>
+                            <h2 class="ion-no-margin">Total final</h2>
+                            <p class="ion-no-margin" style="font-size: 0.9em; color: var(--ion-color-medium);">por persona</p>
+                        </ion-col>
+                        <ion-col size="auto" class="ion-text-end">
+                            <strong style="font-size: 1.5rem;" id="totalPerPerson">$0.00</strong>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-content>
+    </ion-app>
 
     <script src="app.js"></script>
-
-<script src="../main.js"></script></body></html>
+    <script src="../main.js"></script>
+</body>
+</html>

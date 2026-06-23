@@ -1,100 +1,113 @@
-<!DOCTYPE html><html lang="es" data-theme="light"><head>
-    <meta name="theme-color" content="#fdfdfd" id="theme-color-meta">
+<!DOCTYPE html>
+<html lang="es" class="ion-palette-light">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor de Unidades | Navaja Suiza</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <!-- Iconos Phosphor -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=1780083022400">
+    <!-- Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/palettes/dark.class.css" />
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --ion-color-danger: #3b82f6;
+            --ion-color-danger-rgb: 59,130,246;
+            --ion-color-danger-contrast: #ffffff;
+            --ion-color-danger-contrast-rgb: 255,255,255;
+            --ion-color-danger-shade: #3472d8;
+            --ion-color-danger-tint: #4f8ef7;
+        }
+    </style>
 </head>
 <body>
-    <div class="app-card-wrapper"><header class="app-bar">
-        <div class="app-bar-leading">
-            <a href="../index.html" class="icon-button"><i class="ph ph-arrow-left"></i></a>
-        </div>
-        <div class="app-bar-title">Conversor</div>
-        <div class="app-bar-actions">
-            <button class="icon-button" id="theme-toggle" aria-label="Cambiar tema">
-                <i class="ph ph-moon" id="theme-icon"></i>
-            </button>
-        </div>
-    </header><div class="content">
-        <div class="tool-header">
-            <div class="icon-container">
-                <i class="ph ph-arrows-left-right"></i>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="danger">
+                <ion-buttons slot="start">
+                    <ion-button href="../index.html">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Conversor</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button id="theme-toggle">
+                        <ion-icon name="moon" id="theme-icon"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content class="ion-padding">
+            <div class="ion-text-center ion-padding-vertical">
+                <ion-icon name="swap-horizontal" color="danger" style="font-size: 64px;"></ion-icon>
+                <h2>Conversor</h2>
+                <p>Precisión instantánea</p>
             </div>
-            <h1>Conversor</h1>
-            <p>Precisión instantánea</p>
-        </div>
 
-        <nav class="category-tabs">
-            <button class="tab-btn active" data-category="length" title="Longitud">
-                <i class="ph ph-ruler"></i> <span class="tab-text">Longitud</span>
-            </button>
-            <button class="tab-btn" data-category="weight" title="Peso">
-                <i class="ph ph-scales"></i> <span class="tab-text">Peso</span>
-            </button>
-            <button class="tab-btn" data-category="temperature" title="Temperatura">
-                <i class="ph ph-thermometer"></i> <span class="tab-text">Temp</span>
-            </button>
-            <button class="tab-btn" data-category="volume" title="Líquidos / Volumen">
-                <i class="ph ph-drop"></i> <span class="tab-text">Líquidos</span>
-            </button>
-            <button class="tab-btn" data-category="data" title="Almacenamiento de Datos">
-                <i class="ph ph-hard-drives"></i> <span class="tab-text">Datos</span>
-            </button>
-        </nav>
+            <ion-segment scrollable="true" value="length" id="category-tabs" color="danger">
+                <ion-segment-button value="length" data-category="length">
+                    <ion-label>Longitud</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="weight" data-category="weight">
+                    <ion-label>Peso</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="temperature" data-category="temperature">
+                    <ion-label>Temp</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="volume" data-category="volume">
+                    <ion-label>Líquidos</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="data" data-category="data">
+                    <ion-label>Datos</ion-label>
+                </ion-segment-button>
+            </ion-segment>
 
-        <div class="converter-wrapper">
-            <!-- Grupo Input 1 -->
-            <div class="input-group">
-                <div class="input-header">
-                    <label>De</label>
-                </div>
-                <div class="input-row">
-                    <input type="number" id="input1" placeholder="0" value="1">
-                    <div class="custom-select">
-                        <select id="unit1">
-                            <!-- Las opciones se generarán por JS -->
-                        </select>
-                        <i class="ph ph-caret-down"></i>
+            <ion-card class="ion-margin-top">
+                <ion-card-content>
+                    <!-- Grupo Input 1 -->
+                    <ion-item lines="none">
+                        <ion-label position="stacked">De</ion-label>
+                    </ion-item>
+                    <ion-row class="ion-align-items-center">
+                        <ion-col size="6">
+                            <ion-input type="number" id="input1" placeholder="0" value="1" fill="outline"></ion-input>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-select id="unit1" interface="popover" fill="outline">
+                                <!-- Las opciones se generarán por JS -->
+                            </ion-select>
+                        </ion-col>
+                    </ion-row>
+
+                    <!-- Botón de intercambio -->
+                    <div class="ion-text-center ion-margin-vertical">
+                        <ion-button fill="clear" color="danger" id="swap-btn" title="Intercambiar unidades">
+                            <ion-icon name="swap-vertical" slot="icon-only" style="font-size: 32px;"></ion-icon>
+                        </ion-button>
                     </div>
-                </div>
-            </div>
 
-            <!-- Botón de intercambio -->
-            <div class="swap-container">
-                <button id="swap-btn" class="swap-btn" title="Intercambiar unidades">
-                    <i class="ph ph-arrows-down-up"></i>
-                </button>
-            </div>
+                    <!-- Grupo Input 2 -->
+                    <ion-item lines="none">
+                        <ion-label position="stacked">A</ion-label>
+                    </ion-item>
+                    <ion-row class="ion-align-items-center">
+                        <ion-col size="6">
+                            <ion-input type="number" id="input2" placeholder="0" fill="outline"></ion-input>
+                        </ion-col>
+                        <ion-col size="6">
+                            <ion-select id="unit2" interface="popover" fill="outline">
+                                <!-- Las opciones se generarán por JS -->
+                            </ion-select>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-content>
+    </ion-app>
 
-            <!-- Grupo Input 2 -->
-            <div class="input-group">
-                <div class="input-header">
-                    <label>A</label>
-                </div>
-                <div class="input-row">
-                    <input type="number" id="input2" placeholder="0">
-                    <div class="custom-select">
-                        <select id="unit2">
-                            <!-- Las opciones se generarán por JS -->
-                        </select>
-                        <i class="ph ph-caret-down"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div></div>
-
-    
-    
-    
-    
-    
     <script src="app.js"></script>
-
-<script src="../main.js"></script></body></html>
+    <script src="../main.js"></script>
+</body>
+</html>

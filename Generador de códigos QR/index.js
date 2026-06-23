@@ -35,7 +35,7 @@ generateBtn.addEventListener('click', () => {
 });
 
 // Permitir generar al presionar "Enter"
-qrText.addEventListener('keypress', (e) => {
+qrText.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         generateBtn.click();
     }
